@@ -16,7 +16,7 @@
         android:theme="@style/Theme.UEEProject"
         tools:targetApi="31">
         <activity
-            android:name=".DisplayItemsActivity"
+            android:name=".AddToAuction"
             android:exported="false" />
         <activity
             android:name=".EditItemActivity"
@@ -25,7 +25,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".AddToAuction"
+            android:name=".DisplayItemsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

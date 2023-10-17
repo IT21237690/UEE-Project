@@ -41,10 +41,11 @@ class AuctionItemsAdapter(private val editItemClickListener: OnItemClickListener
 
     interface OnItemClickListener {
         fun onEditClick(position: Int)
+        fun onDeleteClick(position: Int)
     }
 }
 
-class AuctionItemViewHolder(itemView: View, private val editItemClickListener: AuctionItemsAdapter.OnItemClickListener) : RecyclerView.ViewHolder(itemView) {
+class AuctionItemViewHolder(itemView: View, private val itemClickListener: AuctionItemsAdapter.OnItemClickListener) : RecyclerView.ViewHolder(itemView) {
     private val itemNameTextView: TextView = itemView.findViewById(R.id.itemNameTextView)
     private val descriptionTextView: TextView = itemView.findViewById(R.id.descriptionTextView)
     private val priceTextView: TextView = itemView.findViewById(R.id.priceTextView)
@@ -52,17 +53,25 @@ class AuctionItemViewHolder(itemView: View, private val editItemClickListener: A
     private val endTimeTextView: TextView = itemView.findViewById(R.id.endTimeTextView)
     private val itemImageView: ImageView = itemView.findViewById(R.id.itemImageView) // Reference to the ImageView
     private val editButton: Button = itemView.findViewById(R.id.editButton)
+    private val deleteButton: Button = itemView.findViewById(R.id.deletebutton)
     private val statusTextView: TextView = itemView.findViewById(R.id.statusTextView) // Add a TextView for displaying status
 
     private val dateFormat = SimpleDateFormat("EEE, MMM dd, yyyy hh:mm a", Locale.getDefault())
 
 
     init {
-        // Set click listener for the edit button
+        // Set click listeners for edit and delete buttons
         editButton.setOnClickListener {
             val position = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                editItemClickListener.onEditClick(position)
+                itemClickListener.onEditClick(position)
+            }
+        }
+
+        deleteButton.setOnClickListener {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                itemClickListener.onDeleteClick(position)
             }
         }
     }
@@ -72,8 +81,10 @@ class AuctionItemViewHolder(itemView: View, private val editItemClickListener: A
         descriptionTextView.text = "Description: ${item.description}"
         priceTextView.text = "Price: ${item.price}"
 
-        val startTime = dateFormat.format(Date(item.startTime))
-        val endTime = dateFormat.format(Date(item.endTime))
+        // Parse and format start and end times
+        val dateFormat = SimpleDateFormat("EEE, MMM dd, yyyy hh:mm a", Locale.getDefault())
+        val startTime = dateFormat.format(item.startTime)
+        val endTime = dateFormat.format(item.endTime)
 
         startTimeTextView.text = "Start Time: $startTime"
         endTimeTextView.text = "End Time: $endTime"
@@ -90,16 +101,18 @@ class AuctionItemViewHolder(itemView: View, private val editItemClickListener: A
 
         // Compare start and end times with current time
         when {
-            item.startTime > currentTimeMillis && item.endTime > currentTimeMillis -> {
+            item.startTime < currentTimeMillis && item.endTime > currentTimeMillis -> {
                 statusTextView.text = "Ongoing"
             }
             item.endTime < currentTimeMillis -> {
                 statusTextView.text = "Ended"
             }
-            else -> {
+            item.startTime > currentTimeMillis && item.endTime > currentTimeMillis -> {
                 statusTextView.text = "Upcoming"
             }
         }
     }
+
+
 
 }
