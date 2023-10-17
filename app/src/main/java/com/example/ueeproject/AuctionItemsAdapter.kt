@@ -16,6 +16,19 @@ import java.util.Locale
 
 class AuctionItemsAdapter(private val editItemClickListener: OnItemClickListener) : ListAdapter<AuctionItem, AuctionItemViewHolder>(DIFF_CALLBACK) {
 
+
+    private val ongoingItems = mutableListOf<AuctionItem>()
+
+    fun filterOngoingItems(items: List<AuctionItem>) {
+        ongoingItems.clear()
+        val currentTimeMillis = System.currentTimeMillis()
+        for (item in items) {
+            if (item.startTime < currentTimeMillis && item.endTime > currentTimeMillis) {
+                ongoingItems.add(item)
+            }
+        }
+        submitList(ongoingItems)
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AuctionItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.item_auction, parent, false)
@@ -26,6 +39,8 @@ class AuctionItemsAdapter(private val editItemClickListener: OnItemClickListener
         val item = getItem(position)
         holder.bind(item)
     }
+
+
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<AuctionItem>() {
