@@ -19,13 +19,16 @@
             android:name=".DisplayItemsActivity"
             android:exported="false" />
         <activity
+            android:name=".AddToAuction"
+            android:exported="false" />
+        <activity
             android:name=".EditItemActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".AddToAuction"
+            android:name=".OngoingAuctions"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

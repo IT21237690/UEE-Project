@@ -62,15 +62,15 @@ class EditItemActivity : AppCompatActivity() {
                         val itemName = document.getString("itemName")
                         val description = document.getString("description")
                         val price = document.getString("price")
-                        val startTime = document.getString("startTime")
-                        val endTime = document.getString("endTime")
+                        val startTime = document.getLong("startTime")
+                        val endTime = document.getLong("endTime")
 
                         // Populate UI elements with retrieved data
                         updatedItemNameEditText.setText(itemName)
                         updatedDescriptionEditText.setText(description)
                         updatedPriceEditText.setText(price)
-                        updatedStartTimeEditText.setText(startTime)
-                        updatedEndTimeEditText.setText(endTime)
+//                        updatedStartTimeEditText.setText(startTime.toString())
+//                        updatedEndTimeEditText.setText(endTime.toString())
 
                         // Load image into ImageView using Glide
                         Glide.with(this@EditItemActivity)
@@ -120,8 +120,8 @@ class EditItemActivity : AppCompatActivity() {
         val updatedItemName = updatedItemNameEditText.text.toString()
         val updatedDescription = updatedDescriptionEditText.text.toString()
         val updatedPrice = updatedPriceEditText.text.toString()
-        val updatedStartTime = updatedStartTimeEditText.text.toString()
-        val updatedEndTime = updatedEndTimeEditText.text.toString()
+//        val updatedStartTime = updatedStartTimeEditText.text.toString()
+//        val updatedEndTime = updatedEndTimeEditText.text.toString()
 
         // Check if the updated item name and description are not empty
         if (updatedItemName.isNotEmpty() && updatedDescription.isNotEmpty()) {
@@ -142,8 +142,8 @@ class EditItemActivity : AppCompatActivity() {
                                     "itemName" to updatedItemName,
                                     "description" to updatedDescription,
                                     "price" to updatedPrice,
-                                    "startTime" to updatedStartTime,
-                                    "endTime" to updatedEndTime,
+//                                    "startTime" to updatedStartTime,
+//                                    "endTime" to updatedEndTime,
                                     "imageUrl" to imageUrl
                                 )
                             )
@@ -152,8 +152,8 @@ class EditItemActivity : AppCompatActivity() {
                                 updatedItemNameEditText.setText(updatedItemName)
                                 updatedDescriptionEditText.setText(updatedDescription)
                                 updatedPriceEditText.setText(updatedPrice)
-                                updatedStartTimeEditText.setText(updatedStartTime)
-                                updatedEndTimeEditText.setText(updatedEndTime)
+//                                updatedStartTimeEditText.setText(updatedStartTime)
+//                                updatedEndTimeEditText.setText(updatedEndTime)
 
                                 Toast.makeText(
                                     this,
@@ -184,8 +184,8 @@ class EditItemActivity : AppCompatActivity() {
                             "itemName" to updatedItemName,
                             "description" to updatedDescription,
                             "price" to updatedPrice,
-                            "startTime" to updatedStartTime,
-                            "endTime" to updatedEndTime
+//                            "startTime" to updatedStartTime,
+//                            "endTime" to updatedEndTime
                         )
                     )
                     .addOnSuccessListener {
@@ -193,8 +193,8 @@ class EditItemActivity : AppCompatActivity() {
                         updatedItemNameEditText.setText(updatedItemName)
                         updatedDescriptionEditText.setText(updatedDescription)
                         updatedPriceEditText.setText(updatedPrice)
-                        updatedStartTimeEditText.setText(updatedStartTime)
-                        updatedEndTimeEditText.setText(updatedEndTime)
+//                        updatedStartTimeEditText.setText(updatedStartTime)
+//                        updatedEndTimeEditText.setText(updatedEndTime)
 
                         Toast.makeText(
                             this,

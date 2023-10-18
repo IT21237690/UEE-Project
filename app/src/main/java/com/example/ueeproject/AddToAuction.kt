@@ -1,5 +1,6 @@
 package com.example.ueeproject
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
@@ -132,8 +133,11 @@ class  AddToAuction : AppCompatActivity() {
                         // Call your uploadImageToStorage function with startTime and endTime as Long values
                         uploadImageToStorage(itemName, description, price, startTime, endTime)
 
-                        val intent = Intent(this, DisplayItemsActivity::class.java)
-                        startActivityForResult(intent, REQUEST_CODE_DISPLAY_ITEMS)
+                        // Start DisplayItemsActivity after uploading data
+                        val intent = Intent()
+                        intent.putExtra("newItemAdded", true)
+                        setResult(Activity.RESULT_OK, intent)
+                        finish()
                     } else {
                         showToast("Invalid date/time format. Please use a valid format.")
                     }
@@ -145,18 +149,26 @@ class  AddToAuction : AppCompatActivity() {
                 // Handle the exception (e.g., show an error message) to prevent the app from crashing
             }
         }
+
     }
 
     private fun convertToTimestamp(dateTimeString: String): Long? {
         return try {
-            val dateFormat = SimpleDateFormat("EEE,MMM dd, yyyy hh.mm a", Locale.getDefault())
-            val date = dateFormat.parse(dateTimeString)
-            date?.time
+            val inputDateFormat = SimpleDateFormat("EEE, MMM dd, yyyy hh:mm a", Locale.getDefault())
+            val outputDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+
+            val parsedDate = inputDateFormat.parse(dateTimeString)
+            val formattedDate = outputDateFormat.format(parsedDate!!)
+
+            // Parse the formatted date into a Long timestamp
+            outputDateFormat.parse(formattedDate)?.time
         } catch (e: ParseException) {
             e.printStackTrace()
             null
         }
     }
+
+
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
