@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Home ImageView -->
+    <ImageView
+        android:id="@+id/home"
+        android:layout_width="78dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/home"/>
+
+    <!-- User Male ImageView -->
+
+    <!-- RecyclerView -->
+
+    <ImageView
+        android:id="@+id/user_male"
+        android:layout_width="78dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:layout_toEndOf="@id/home"
+        android:contentDescription="user_male"
+        android:src="@drawable/user_male" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/home"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+</RelativeLayout>
