@@ -1,0 +1,59 @@
+<!-- item_ongoing_auction.xml -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/itemImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_placeholder_image" />
+
+    <TextView
+        android:id="@+id/itemNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/itemImageView"
+        android:layout_marginStart="16dp"
+        android:text="Item Name: "
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itemNameTextView"
+        android:layout_toRightOf="@id/itemImageView"
+        android:layout_marginStart="16dp"
+        android:text="Description: " />
+
+    <TextView
+        android:id="@+id/priceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/descriptionTextView"
+        android:layout_toRightOf="@id/itemImageView"
+        android:layout_marginStart="16dp"
+        android:text="Price: " />
+
+    <TextView
+        android:id="@+id/startTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/priceTextView"
+        android:layout_toRightOf="@id/itemImageView"
+        android:layout_marginStart="16dp"
+        android:text="Start Time: " />
+
+    <TextView
+        android:id="@+id/endTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/startTimeTextView"
+        android:layout_toRightOf="@id/itemImageView"
+        android:layout_marginStart="16dp"
+        android:text="End Time: " />
+</RelativeLayout>

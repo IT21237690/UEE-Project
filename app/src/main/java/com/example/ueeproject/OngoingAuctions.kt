@@ -1,42 +1,26 @@
 package com.example.ueeproject
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.widget.Button
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 
-class OngoingAuctions : AppCompatActivity() {
+class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickListener {
     private lateinit var recyclerView: RecyclerView
     private val db = FirebaseFirestore.getInstance()
-    private lateinit var adapter: AuctionItemsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ongoing_auctions)
 
         recyclerView = findViewById(R.id.recyclerView)
-
-        adapter = AuctionItemsAdapter(object : AuctionItemsAdapter.OnItemClickListener {
-            override fun onEditClick(position: Int) {
-                val clickedItem = adapter.currentList[position]
-                val itemId = clickedItem.itemId // Assuming itemId is a property in your AuctionItem class
-
-                // Start EditItemActivity and pass itemId as an extra
-                val intent = Intent(this@OngoingAuctions, EditItemActivity::class.java)
-                intent.putExtra("itemId", itemId)
-                startActivityForResult(intent, REQUEST_CODE_EDIT_ITEM)
-            }
-
-            override fun onDeleteClick(position: Int) {
-                // Implement delete functionality if needed
-            }
-        })
-
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = adapter
 
         // Query Firestore to get ongoing items
         val currentTime = System.currentTimeMillis()
@@ -54,15 +38,82 @@ class OngoingAuctions : AppCompatActivity() {
                         Log.d("FirestoreData", "${document.id} => ${document.data}")
                     }
                 }
-                // Update RecyclerView with ongoing items
-                adapter.submitList(itemsList)
+                // Create and set the adapter for RecyclerView
+                val adapter = OngoingAuctionsAdapter(itemsList, this)
+                recyclerView.adapter = adapter
             }
             .addOnFailureListener { exception ->
                 Log.w("FirestoreData", "Error getting documents: $exception")
                 // Handle error if data retrieval fails
             }
-
     }
+
+    override fun onItemClick(item: AuctionItem) {
+        val itemId = item.itemId
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_bid_amount, null)
+        val editTextBidAmount: EditText = dialogView.findViewById(R.id.editTextBidAmount)
+        val buttonSubmitBid: Button = dialogView.findViewById(R.id.buttonSubmitBid)
+
+        val dialogBuilder = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setTitle("Enter Bid Amount")
+            .setCancelable(true)
+
+        val dialog = dialogBuilder.create()
+        dialog.show()
+
+        buttonSubmitBid.setOnClickListener {
+            val bidAmount = editTextBidAmount.text.toString()
+            if (bidAmount.isNotEmpty()) {
+                val bidAmountValue = bidAmount.toDouble() // Convert bid amount to a numerical value if needed
+
+                // Save bid amount and item ID to a separate collection in Firestore
+                val db = FirebaseFirestore.getInstance()
+                val bidData = hashMapOf(
+                    "itemId" to itemId,
+                    "bidAmount" to bidAmountValue
+                )
+
+                db.collection("Bids")
+                    .add(bidData)
+                    .addOnSuccessListener { documentReference ->
+                        Log.d("Firestore", "Bid saved with ID: ${documentReference.id}")
+                        // Handle success, e.g., show a success message to the user
+                        showSuccessPopup()
+                        // Dismiss the input dialog after successful completion of Firestore operation
+                        dialog.dismiss()
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w("Firestore", "Error adding bid", e)
+                        // Handle error, e.g., show an error message to the user
+                        // Dismiss the input dialog in case of an error
+                        dialog.dismiss()
+                    }
+            } else {
+                // Handle empty bid amount (show a message, error, etc.)
+                // You might want to display an error message to the user
+                editTextBidAmount.error = "Bid amount cannot be empty"
+            }
+        }
+    }
+
+    private fun showSuccessPopup() {
+        val successDialogBuilder = AlertDialog.Builder(this)
+            .setTitle("Success!")
+            .setMessage("Your bid has been successfully placed.")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+        val successDialog = successDialogBuilder.create()
+        successDialog.show()
+    }
+
+
+
+
+
+
+
 
     companion object {
         private const val REQUEST_CODE_EDIT_ITEM = 1
