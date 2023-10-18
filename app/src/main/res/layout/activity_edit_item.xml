@@ -119,7 +119,7 @@
         android:id="@+id/saveButton"
         android:layout_width="239dp"
         android:layout_height="49dp"
-        android:background="@drawable/rounded_buttons"
+        android:background="@drawable/custom_button_background"
         android:backgroundTint="#FFC107"
         android:text="@string/add_item"
         android:textColorLink="#9C27B0"

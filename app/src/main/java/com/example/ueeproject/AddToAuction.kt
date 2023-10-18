@@ -21,7 +21,7 @@ import java.util.Locale
 import java.util.UUID
 
 
-class AddToAuction : AppCompatActivity() {
+class  AddToAuction : AppCompatActivity() {
 
 
     private val REQUEST_CODE_DISPLAY_ITEMS = 1

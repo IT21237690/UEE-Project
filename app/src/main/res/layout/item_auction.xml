@@ -66,7 +66,7 @@
         android:layout_marginStart="88dp"
         android:layout_marginTop="36dp"
         android:text="Edit"
-        android:background="@drawable/rounded_buttons"
+        android:background="@drawable/custom_button_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -11,23 +11,28 @@
         android:id="@+id/home"
         android:layout_width="78dp"
         android:layout_height="68dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
 
         android:src="@drawable/home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.057" />
 
     <ImageView
         android:id="@+id/user_male"
         android:layout_width="85dp"
         android:layout_height="78dp"
-        android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
         android:contentDescription="user_male"
         android:src="@drawable/user_male"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.958"
+        app:layout_constraintStart_toEndOf="@+id/home"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.042" />
 
     <TextView
         android:id="@+id/add_item_to_auction"
@@ -126,7 +131,7 @@
         android:layout_height="49dp"
         android:text="Add Item"
         android:textSize="20sp"
-        android:background="@drawable/rounded_buttons"
+        android:background="@drawable/custom_button_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
