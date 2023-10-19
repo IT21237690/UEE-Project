@@ -47,6 +47,9 @@ class SellItemAdapter(private val editItemClickListener: OnItemClickListener) : 
     }
 }
 
+
+
+
 class SellItemViewHolder(itemView: View, private val itemClickListener: SellItemAdapter.OnItemClickListener) : RecyclerView.ViewHolder(itemView) {
     private val itemNameTextView: TextView = itemView.findViewById(R.id.itemNameTextView)
     private val descriptionTextView: TextView = itemView.findViewById(R.id.descriptionTextView)
@@ -95,3 +98,12 @@ class SellItemViewHolder(itemView: View, private val itemClickListener: SellItem
 
 
 }
+
+
+
+
+
+
+
+
+

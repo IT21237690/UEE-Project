@@ -8,7 +8,8 @@ data class SellItem(
     var description: String = "",
     var price: String = "",
     val imageUrl: String = "",
-    val itemId : String = ""
+    val itemId : String = "",
+    val sellerId : String = "",
 ): Serializable
 {
 }
