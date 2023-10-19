@@ -15,5 +15,8 @@
         android:id="@+id/buttonSubmitBid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/button_yellow"
+        android:textColor="@color/button_text_black"
+        android:textStyle="bold"
         android:text="Submit Bid" />
 </LinearLayout>

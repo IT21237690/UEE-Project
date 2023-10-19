@@ -11,4 +11,5 @@
     <string name="item_image_description" />
     <string name="add_item">Add Item</string>
     <string name="todo">TODO</string>
+    <string name="Edit_Item_Details" />
 </resources>

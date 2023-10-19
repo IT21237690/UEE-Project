@@ -52,7 +52,9 @@
         android:layout_marginStart="88dp"
         android:layout_marginTop="36dp"
         android:text="Edit"
-        android:background="@drawable/custom_button_background"
+        android:backgroundTint="@color/button_yellow"
+        android:textColor="@color/button_text_black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,7 +65,9 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="36dp"
         android:text="Delete"
-        android:background="@drawable/rounded_button_delete"
+        android:backgroundTint="@color/button_red"
+        android:textColor="@color/button_text_white"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/editButton"
         app:layout_constraintTop_toTopOf="parent" />
 
