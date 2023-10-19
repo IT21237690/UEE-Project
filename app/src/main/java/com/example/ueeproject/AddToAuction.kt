@@ -24,7 +24,6 @@ import java.util.UUID
 
 class  AddToAuction : AppCompatActivity() {
 
-
     private val REQUEST_CODE_DISPLAY_ITEMS = 1
     private lateinit var imageView: ImageView
     private lateinit var itemNameEditText: EditText
