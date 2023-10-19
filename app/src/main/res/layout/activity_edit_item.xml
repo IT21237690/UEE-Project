@@ -33,7 +33,7 @@
         android:layout_width="324dp"
         android:layout_height="47dp"
         android:gravity="center"
-        android:text="Edit Item Details"
+        android:text="Edit Auction Item Details"
         android:textColor="@color/add_item_to_auction_color"
         android:textSize="25sp"
         android:textStyle="bold"

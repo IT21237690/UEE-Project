@@ -3,6 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#D9D9D9"
     android:padding="16dp">
 
     <ImageView
@@ -16,8 +17,8 @@
         android:id="@+id/itemNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/itemImageView"
         android:layout_marginStart="16dp"
+        android:layout_toRightOf="@id/itemImageView"
         android:text="Item Name: "
         android:textStyle="bold" />
 
@@ -26,8 +27,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/itemNameTextView"
-        android:layout_toRightOf="@id/itemImageView"
         android:layout_marginStart="16dp"
+        android:layout_toRightOf="@id/itemImageView"
         android:text="Description: " />
 
     <TextView
@@ -35,8 +36,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/descriptionTextView"
-        android:layout_toRightOf="@id/itemImageView"
         android:layout_marginStart="16dp"
+        android:layout_toRightOf="@id/itemImageView"
         android:text="Price: " />
 
     <TextView
@@ -44,8 +45,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/priceTextView"
-        android:layout_toRightOf="@id/itemImageView"
         android:layout_marginStart="16dp"
+        android:layout_toRightOf="@id/itemImageView"
         android:text="Start Time: " />
 
     <TextView
@@ -53,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/startTimeTextView"
-        android:layout_toRightOf="@id/itemImageView"
         android:layout_marginStart="16dp"
+        android:layout_toRightOf="@id/itemImageView"
         android:text="End Time: " />
 </RelativeLayout>

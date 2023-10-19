@@ -28,7 +28,7 @@
             android:name=".DisplayItemsActivity"
             android:exported="false" />
         <activity
-            android:name=".AddToAuction"
+            android:name=".SellItemsDisplay"
             android:exported="false" />
         <activity
             android:name=".EditItemActivity"
@@ -37,7 +37,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SellItemsDisplay"
+            android:name=".AddToAuction"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
