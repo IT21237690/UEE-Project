@@ -30,8 +30,6 @@ class  AddItems : AppCompatActivity() {
     private lateinit var itemNameEditText: EditText
     private lateinit var descriptionEditText: EditText
     private lateinit var priceEditText: EditText
-    private lateinit var startTimeEditText: EditText
-    private lateinit var endTimeEditText: EditText
     private lateinit var saveButton: Button
     private val db = FirebaseFirestore.getInstance()
     private val storageRef = FirebaseStorage.getInstance().reference
@@ -152,7 +150,7 @@ class  AddItems : AppCompatActivity() {
         )
 
         // Use the generated itemId as the document ID
-        db.collection("AddItems").document(itemId)
+        db.collection("Sell Items").document(itemId)
             .set(data)
             .addOnSuccessListener {
                 // Clear input fields after successful save
