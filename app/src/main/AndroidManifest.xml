@@ -22,7 +22,7 @@
             android:name=".SellItemsDisplay"
             android:exported="false" />
         <activity
-            android:name=".AddItems"
+            android:name=".DisplaysellingItemsToBuyers"
             android:exported="false" />
         <activity
             android:name=".EditSellItem"
@@ -40,7 +40,7 @@
             android:name=".EditItemActivity"
             android:exported="true" />
         <activity
-            android:name=".DisplaysellingItemsToBuyers"
+            android:name=".AddItems"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

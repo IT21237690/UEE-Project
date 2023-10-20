@@ -105,6 +105,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.154" />
 
+    <CheckBox
+        android:id="@+id/checkBoxIsChecked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test this Product"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addItemPrice"
+        app:layout_constraintVertical_bias="0.1" />
+
     <Button
         android:id="@+id/buttonAdd"
         android:layout_width="wrap_content"
@@ -115,9 +128,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addItemPrice"
-        app:layout_constraintVertical_bias="0.382" />
+        app:layout_constraintVertical_bias="0.685" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

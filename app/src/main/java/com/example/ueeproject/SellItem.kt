@@ -10,6 +10,8 @@ data class SellItem(
     val imageUrl: String = "",
     val itemId : String = "",
     val sellerId : String = "",
+    var isChecked: Boolean = false,
+    val Status : String = ""
 ): Serializable
 {
 }

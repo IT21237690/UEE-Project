@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
@@ -34,7 +35,7 @@ class  AddItems : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     private val storageRef = FirebaseStorage.getInstance().reference
     private var imageUri: Uri? = null
-    val calendar = Calendar.getInstance()
+
 
 
 
@@ -59,6 +60,7 @@ class  AddItems : AppCompatActivity() {
         descriptionEditText = findViewById(R.id.addItemDescription)
         priceEditText = findViewById(R.id.addItemPrice)
         saveButton = findViewById(R.id.buttonAdd)
+        val checkBoxIsChecked: CheckBox = findViewById(R.id.checkBoxIsChecked)
 
         imageView.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -70,6 +72,8 @@ class  AddItems : AppCompatActivity() {
                 val itemName = itemNameEditText.text.toString()
                 val description = descriptionEditText.text.toString()
                 val price = priceEditText.text.toString()
+                val IsChecked: Boolean = checkBoxIsChecked.isChecked // Initialize IsChecked with a boolean value
+                val Status: String = ""
 
 
 
@@ -80,13 +84,13 @@ class  AddItems : AppCompatActivity() {
                     // Validate if the conversion was successful
 
                         // Call your uploadImageToStorage function with startTime and endTime as Long values
-                        uploadImageToStorage(itemName, description, price)
+                        uploadImageToStorage(itemName, description, price, IsChecked ,Status)
 
                         // Start DisplayItemsActivity after uploading data
-                        val intent = Intent()
-                        intent.putExtra("newItemAdded", true)
-                        setResult(Activity.RESULT_OK, intent)
-                        finish()
+                    val intent = Intent(this, SellItemsDisplay::class.java)
+                    intent.putExtra("newItemName", itemName) // Pass any other data you want to display in DisplayItemsActivity
+                    startActivity(intent)
+                    finish()
 
                 } else {
                     showToast("Please fill out all fields and select an image.")
@@ -107,6 +111,8 @@ class  AddItems : AppCompatActivity() {
         itemName: String,
         description: String,
         price: String,
+        IsChecked: Boolean,
+        Status: String
 
     ) {
         val imageFileName = "${UUID.randomUUID()}.jpg"
@@ -121,7 +127,10 @@ class  AddItems : AppCompatActivity() {
                         itemName,
                         description,
                         price,
-                        imageUrl
+                        imageUrl,
+                        IsChecked,
+                        Status
+
                     )
                 }
             }
@@ -136,7 +145,9 @@ class  AddItems : AppCompatActivity() {
         itemName: String,
         description: String,
         price: String,
-        imageUrl: String
+        imageUrl: String,
+        IsChecked: Boolean,
+        Status: String
     ) {
         // Generate a unique itemId
         val itemId = UUID.randomUUID().toString()
@@ -146,7 +157,9 @@ class  AddItems : AppCompatActivity() {
             "itemName" to itemName,
             "description" to description,
             "price" to price,
-            "imageUrl" to imageUrl
+            "imageUrl" to imageUrl,
+            "IsChecked" to  IsChecked,
+            "Status" to Status
         )
 
         // Use the generated itemId as the document ID

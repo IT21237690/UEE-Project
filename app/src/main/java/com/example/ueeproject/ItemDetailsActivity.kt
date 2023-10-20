@@ -60,13 +60,13 @@ class ItemDetailsActivity : AppCompatActivity() {
                         .into(itemImageView)
 
                     // Fetch and display seller details based on sellerId from AddItems document
-                    db.collection("Sellers").document(sellerId!!)
+                    db.collection("users").document(sellerId!!)
                         .get()
                         .addOnSuccessListener { sellerDocument ->
                             if (sellerDocument != null && sellerDocument.exists()) {
                                 // Seller document exists, fetch seller details and update UI
                                 val sellerName = sellerDocument.getString("name")
-                                val sellerEmail = sellerDocument.getString("SellerId")
+                                val sellerEmail = sellerDocument.getString("email")
 
                                 // Update UI with fetched seller details
                                 sellerNameTextView.text = "Seller Name: $sellerName"
