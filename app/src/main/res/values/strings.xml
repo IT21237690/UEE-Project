@@ -12,4 +12,7 @@
     <string name="add_item">Add Item</string>
     <string name="todo">TODO</string>
     <string name="Edit_Item_Details" />
+
+    <string name="loginHeading">Login</string>
+
 </resources>
