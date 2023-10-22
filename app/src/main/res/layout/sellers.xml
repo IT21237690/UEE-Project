@@ -6,12 +6,6 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <ImageView
-        android:id="@+id/itemImageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_placeholder_image" />
 
     <TextView
         android:id="@+id/itemNameTextView"
@@ -34,6 +28,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Price"
+        android:layout_marginTop="4dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/AddressTextVIew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address"
         android:layout_marginTop="4dp"
         android:textStyle="bold"/>
 
