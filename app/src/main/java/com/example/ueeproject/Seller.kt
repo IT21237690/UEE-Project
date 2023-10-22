@@ -10,4 +10,7 @@ data class Seller(
     val password: String = "",
     val phone : String = "",
     val address : String = "",
+    val feedback : Double=0.0,
+    val feedbackCount : Long=0
+
 ): Serializable

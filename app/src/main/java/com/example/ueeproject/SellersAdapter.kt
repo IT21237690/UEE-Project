@@ -41,11 +41,13 @@ class sellersviewViewHolder(itemView: View, private val listener: sellersadapter
 
 
 
+
     fun bind(item: Seller) {
         itemNameTextView.text = "Name: ${item.name}"
         descriptionTextView.text = "Email: ${item.email}"
         priceTextView.text = "Phone: ${item.phone}"
-        AddressTextVIew.text = "Adress: ${item.address}"
+        AddressTextVIew.text = "Address: ${item.address}"
+
 
 
 

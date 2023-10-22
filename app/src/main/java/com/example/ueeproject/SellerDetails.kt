@@ -1,11 +1,17 @@
 package com.example.ueeproject
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -15,20 +21,30 @@ class SellerDetails : AppCompatActivity() {
     private lateinit var descriptionTextView: TextView
     private lateinit var priceTextView: TextView
     private lateinit var itemImageView: ImageView
-    private lateinit var  AddressTextVIew : TextView
+    private lateinit var addressTextView: TextView
+    private lateinit var feedbackTextView: TextView
+    private lateinit var ratingBar: RatingBar
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_seller_details)
+        setContentView(R.layout.activity_feedback)
 
         // Retrieve item ID from the intent extra
         val sellerId = intent.getStringExtra("ITEM_ID")
 
-        itemNameTextView = findViewById(R.id.itemNameTextView)
-        descriptionTextView = findViewById(R.id.descriptionTextView)
-        priceTextView = findViewById(R.id.priceTextView)
-        AddressTextVIew = findViewById(R.id.AddressTextVIew)
+        itemNameTextView = findViewById(R.id.sellerName)
+        descriptionTextView = findViewById(R.id.email)
+        priceTextView = findViewById(R.id.sellerContactNo)
+        addressTextView = findViewById(R.id.sellerAddress)
+        feedbackTextView = findViewById(R.id.sellerRating)
+        ratingBar = findViewById(R.id.ratingBar)
+
+        val feedbackButton = findViewById<Button>(R.id.feedbackSubmitButton)
+        feedbackButton.setOnClickListener {
+            val feedbackRating = ratingBar.rating.toLong() // Get the rating from the RatingBar as a Long
+            // Save the feedback rating to the database or perform any other action
+            saveFeedbackToDatabase(feedbackRating)
+        }
 
         // Sample code (assuming you have a Firestore collection named "AddItems")
         val db = FirebaseFirestore.getInstance()
@@ -42,41 +58,75 @@ class SellerDetails : AppCompatActivity() {
                     val sellerEmail = document.getString("email")
                     val sellerPhone = document.getString("phone")
                     val sellerAddress = document.getString("address")
+                    val feedback = document.getLong("feedback")
+
+                    if (sellerName != null) {
+                        itemNameTextView.text = sellerName
+                    }
+
+                    if (sellerEmail != null) {
+                        descriptionTextView.text = sellerEmail
+                    }
+
+                    if (sellerPhone != null) {
+                        priceTextView.text = sellerPhone
+                    }
+
+                    if (sellerAddress != null) {
+                        addressTextView.text = sellerAddress
+                    }
+
+                    if (feedback != null) {
+                        feedbackTextView.text = feedback.toString()
+                    }
 
 
-                    // Update UI with fetched item details
-                    itemNameTextView.text = "Seller Name: $sellerName"
-                    descriptionTextView.text = "Email: $sellerEmail"
-                    priceTextView.text = "Phone Number: $sellerPhone"
-                    AddressTextVIew.text = "Address: $sellerAddress"
-
-
-
-                    // Fetch and display seller details based on sellerId from AddItems document
-                    db.collection("users").document(sellerId!!)
-                        .get()
-                        .addOnSuccessListener { sellerDocument ->
-                             sellerDocument != null && sellerDocument.exists()
-                                // Seller document exists, fetch seller details and update UI
-//                                val sellerName = sellerDocument.getString("name")
-//                                val sellerEmail = sellerDocument.getString("email")
-//                                val sellerPhone = sellerDocument.getString("phone")
-//                                val sellerAddress = sellerDocument.getString("address")
-
-
-
-                        }
-                        .addOnFailureListener { sellerException ->
-                            // Handle errors related to fetching seller details
-
-
-                        }
                 } else {
                     // Document does not exist, handle error or show a message
                 }
             }
             .addOnFailureListener { exception ->
                 // Handle errors related to fetching item details
+            }
+    }
+
+    private fun saveFeedbackToDatabase(feedback: Long) {
+        // Assuming you have the sellerId from the intent extra
+        val sellerId = intent.getStringExtra("ITEM_ID")
+
+        // Save the feedback to the seller's document in the Firestore database
+        val db = FirebaseFirestore.getInstance()
+
+        // Fetch the current feedback value from the Firestore document
+        db.collection("users").document(sellerId!!)
+            .get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    val currentFeedback = documentSnapshot.getDouble("feedback") ?: 0.0
+                    val feedbackCount = documentSnapshot.getLong("feedbackCount") ?: 0
+
+                    // Calculate the new average feedback
+                    val newFeedback =
+                        ((currentFeedback * feedbackCount) + feedback.toDouble()) / (feedbackCount + 1)
+
+                    // Update feedback and feedback count in the document
+                    val feedbackData = hashMapOf(
+                        "feedback" to newFeedback,
+                        "feedbackCount" to (feedbackCount + 1)
+                    )
+
+                    db.collection("users").document(sellerId)
+                        .update(feedbackData as Map<String, Any>)
+                        .addOnSuccessListener {
+                            // Feedback saved successfully
+                            Toast.makeText(this, "Feedback saved!", Toast.LENGTH_SHORT).show()
+                        }
+                        .addOnFailureListener {
+                            // Handle errors related to saving feedback
+                            Toast.makeText(this, "Failed to save feedback.", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                }
             }
     }
 }
