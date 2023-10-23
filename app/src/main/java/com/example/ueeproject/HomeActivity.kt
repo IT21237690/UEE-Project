@@ -1,5 +1,6 @@
 package com.example.ueeproject
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -25,6 +26,18 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         showName = findViewById(R.id.homeUserNameHeading)
+
+        binding.profileButton.setOnClickListener {
+            startActivity(
+                Intent(this, profileActivity::class.java)
+            )
+        }
+
+        binding.homeButton.setOnClickListener {
+            startActivity(
+                Intent(this, HomeActivity::class.java)
+            )
+        }
 
         firebaseAuth = FirebaseAuth.getInstance()
         val uid = firebaseAuth.currentUser?.uid
