@@ -17,10 +17,10 @@
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.31"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.801" />
+        app:layout_constraintVertical_bias="0.179" />
 
     <Button
         android:id="@+id/feedbackSubmitButton"
@@ -65,96 +65,89 @@
 
     <EditText
         android:id="@+id/sellerName"
-        android:layout_width="357dp"
-        android:layout_height="42dp"
-        android:layout_marginBottom="336dp"
+        android:layout_width="367dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="476dp"
         android:background="@drawable/rounded_edittext_bg"
         android:hint="Seller Name"
         android:inputType="text"
         android:padding="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintHorizontal_bias="0.363"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sellerImage"
-        app:layout_constraintVertical_bias="0.21" />
 
-    <EditText
-        android:id="@+id/sellerEmail"
-        android:layout_width="357dp"
-        android:layout_height="42dp"
-        android:background="@drawable/rounded_edittext_bg"
-        android:hint="Email"
-        android:inputType="text"
-        android:padding="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.544" />
+        />
 
     <EditText
         android:id="@+id/sellerAddress"
-        android:layout_width="357dp"
-        android:layout_height="42dp"
+        android:layout_width="367dp"
+        android:layout_height="48dp"
         android:background="@drawable/rounded_edittext_bg"
         android:hint="Address"
         android:inputType="text"
         android:padding="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.619" />
+        app:layout_constraintVertical_bias="0.588" />
 
     <EditText
         android:id="@+id/sellerContactNo"
-        android:layout_width="357dp"
-        android:layout_height="42dp"
-        android:layout_marginBottom="364dp"
+        android:layout_width="372dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="408dp"
         android:background="@drawable/rounded_edittext_bg"
         android:hint="Contact Number"
         android:inputType="text"
         android:padding="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.282"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editItemName"
-        app:layout_constraintVertical_bias="1.0" />
+
+        />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="372dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="340dp"
+        android:background="@drawable/rounded_edittext_bg"
+        android:hint="Contact Number"
+        android:inputType="text"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.282"
+        app:layout_constraintStart_toStartOf="parent"
+
+        />
 
     <EditText
         android:id="@+id/sellerRating"
-        android:layout_width="357dp"
-        android:layout_height="42dp"
+        android:layout_width="364dp"
+        android:layout_height="50dp"
         android:background="@drawable/rounded_edittext_bg"
         android:hint="Rating"
         android:inputType="text"
         android:padding="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.234"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.696" />
-
-    <ImageView
-        android:id="@+id/sellerImage"
-        android:layout_width="171dp"
-        android:layout_height="138dp"
-        android:adjustViewBounds="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.193" />
+        app:layout_constraintVertical_bias="0.681" />
 
     <RatingBar
         android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="279dp"
+        android:layout_height="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.894" />
+        app:layout_constraintVertical_bias="0.865" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -48,8 +48,6 @@ class  AddToAuction : AppCompatActivity() {
         }
     }
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_addtoauction)
@@ -268,6 +266,46 @@ class  AddToAuction : AppCompatActivity() {
             .addOnFailureListener { e ->
                 println("Error adding document: $e")
             }
+    }
+
+/*
+*input is not valid if
+*..itemName is empty
+* ..description is empty
+* ..price is empty
+* .. start time and end tie is empty
+* ..item name contains less than 5 charcters
+* ..description contains less than 20 characters
+* ..price contains less than 3 digits
+* ..start and end date and time contain less than 14 digits
+* ..start and end date and time contain more than 14 digits
+*/
+    companion object {
+        fun validateAuctionInput(
+            itemName: String,
+            description: String,
+            price: String,
+            startTime: String,
+            endTime: String,
+
+            ): Boolean {
+            if (itemName.isEmpty() || description.isEmpty() || price.isEmpty() || startTime.isEmpty()||endTime.isEmpty()) {
+                return false
+            }
+            if (itemName.count { it.isLetter() } < 5) {
+                return false
+            }
+            if (description.count { it.isLetter() } < 20) {
+                return false
+            }
+            if (price.count { it.isDigit() } < 4) {
+                return false
+            }
+            if (startTime.count { it.isDigit() } < 14 ||endTime.count { it.isDigit() } < 14 ) {
+                return false
+            }
+            return true
+        }
     }
 
 

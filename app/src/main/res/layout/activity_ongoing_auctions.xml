@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#BCBCBC">
 
 
     <TextView
@@ -13,14 +14,14 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="23dp"
+        android:layout_marginStart="39dp"
         android:layout_marginTop="149dp"
-        android:layout_marginEnd="63dp"
+        android:layout_marginEnd="46dp"
         android:layout_marginBottom="536dp"
         android:text="Auction Items"
         android:textAlignment="center"
         android:textColor="#020202"
-        android:textSize="25sp"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +36,7 @@
         android:layout_height="68dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
-        android:src="@drawable/home"/>
+        android:src="@drawable/home" />
 
     <!-- User Male ImageView -->
 
