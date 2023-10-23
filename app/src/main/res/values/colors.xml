@@ -4,6 +4,8 @@
     <color name="black">#FF000000</color>
     <color name="yellow">#FFC801</color>
     <color name="g_black">#171717</color>
+    <color name="dark_blue">#32357a</color>
+    <color name="light_blue">#f2f1f6</color>
 
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
