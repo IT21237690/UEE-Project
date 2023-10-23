@@ -6,32 +6,27 @@
     android:layout_height="match_parent"
     android:background="#BCBCBC">
 
-
     <ImageView
         android:id="@+id/home"
         android:layout_width="78dp"
         android:layout_height="68dp"
-
         android:src="@drawable/home"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintVertical_bias="0.057" />
 
     <ImageView
         android:id="@+id/user_male"
         android:layout_width="85dp"
         android:layout_height="78dp"
-        android:layout_marginEnd="16dp"
-        android:contentDescription="user_male"
         android:src="@drawable/user_male"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.958"
         app:layout_constraintStart_toEndOf="@+id/home"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.958"
         app:layout_constraintVertical_bias="0.042" />
 
     <TextView
@@ -40,16 +35,15 @@
         android:layout_height="47dp"
         android:gravity="center"
         android:text="@string/add_item_to_auction_string"
-        android:textColor="@color/add_item_to_auction_color"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        android:textColor="@color/add_item_to_auction_color"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintVertical_bias="0.132" />
-
 
     <EditText
         android:id="@+id/editItemNameEditText"
@@ -63,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_item_to_auction"
-        app:layout_constraintVertical_bias="0.32" />
+        app:layout_constraintVertical_bias="0.301" />
 
     <EditText
         android:id="@+id/editDescriptionEditText"
@@ -77,36 +71,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_item_to_auction"
-        app:layout_constraintVertical_bias="0.438" />
+        app:layout_constraintVertical_bias="0.426" />
 
     <EditText
         android:id="@+id/editPriceEditText"
         android:layout_width="361dp"
         android:layout_height="60dp"
-        android:background="@drawable/rounded_edittext_bg"
         android:hint="Price"
         android:inputType="text"
         android:padding="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/rounded_edittext_bg"
         app:layout_constraintTop_toBottomOf="@+id/add_item_to_auction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.555" />
 
     <EditText
         android:id="@+id/editTextEndTime"
         android:layout_width="361dp"
         android:layout_height="60dp"
-        android:background="@drawable/rounded_edittext_bg"
         android:hint="End Time"
         android:padding="12dp"
         android:focusable="false"
         android:clickable="true"
         android:inputType="none"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/rounded_edittext_bg"
         app:layout_constraintTop_toBottomOf="@+id/add_item_to_auction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.809" />
 
     <EditText
@@ -114,39 +108,38 @@
         android:layout_width="361dp"
         android:layout_height="60dp"
         android:background="@drawable/rounded_edittext_bg"
+        android:clickable="true"
+        android:focusable="false"
         android:hint="Start Time"
         android:inputType="none"
         android:padding="12dp"
-        android:focusable="false"
-        android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_item_to_auction"
-        app:layout_constraintVertical_bias="0.679" />
+        app:layout_constraintVertical_bias="0.681" />
 
     <Button
         android:id="@+id/saveButton"
         android:layout_width="239dp"
         android:layout_height="49dp"
         android:text="Add Item"
-        android:backgroundTint="@color/button_yellow"
         android:textSize="20sp"
         android:textColor="@color/button_text_black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/button_yellow"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEndTime"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEndTime" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="200dp"
         android:layout_height="150dp"
-        app:layout_constraintBottom_toTopOf="@+id/editItemNameEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/add_image"
         app:layout_constraintTop_toBottomOf="@+id/add_item_to_auction"
-        app:srcCompat="@drawable/conectors_2" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/editItemNameEditText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

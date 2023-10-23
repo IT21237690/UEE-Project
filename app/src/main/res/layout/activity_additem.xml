@@ -87,7 +87,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.297"
-        app:srcCompat="@drawable/conectors_2" />
+        app:srcCompat="@drawable/add_image" />
 
     <TextView
         android:id="@+id/add_item"
