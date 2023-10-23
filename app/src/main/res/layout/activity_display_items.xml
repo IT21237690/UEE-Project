@@ -2,16 +2,41 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#BCBCBC">
 
     <!-- Home ImageView -->
+    <TextView
+        android:id="@+id/add_item3"
+        android:layout_width="324dp"
+        android:layout_height="47dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="149dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginBottom="536dp"
+        android:text="My Items In Auction"
+        android:textAlignment="center"
+        android:textColor="#020202"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.154" />
+
     <ImageView
         android:id="@+id/home"
         android:layout_width="78dp"
         android:layout_height="68dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
-        android:src="@drawable/home"/>
+        android:src="@drawable/home" />
 
     <!-- User Male ImageView -->
 
@@ -30,16 +55,16 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="322dp"
-        android:layout_height="551dp"
+        android:layout_width="match_parent"
+        android:layout_height="464dp"
         android:layout_below="@id/home"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="49dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="138dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="21dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 </RelativeLayout>
