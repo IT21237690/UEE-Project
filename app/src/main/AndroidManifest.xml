@@ -16,19 +16,7 @@
         android:theme="@style/Theme.UEEProject"
         tools:targetApi="31">
         <activity
-            android:name=".SellerDetails"
-            android:exported="false" />
-        <activity
-            android:name=".EditItemActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ItemDetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SellItemsDisplay"
-            android:exported="false" />
-        <activity
-            android:name=".DisplaysellingItemsToBuyers"
+            android:name=".AddItems"
             android:exported="false" />
         <activity
             android:name=".EditSellItem"
@@ -40,19 +28,16 @@
             android:name=".DisplayItemsActivity"
             android:exported="false" />
         <activity
-            android:name=".AddToAuction"
+            android:name=".SellItemsDisplay"
             android:exported="false" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".EditItemActivity"
             android:exported="true" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DisplayAllSellers"
+            android:name=".AddToAuction"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

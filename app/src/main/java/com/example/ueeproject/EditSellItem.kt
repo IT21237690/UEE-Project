@@ -213,4 +213,40 @@ class EditSellItem : AppCompatActivity() {
             ).show()
         }
     }
+
+    /*
+*input is not valid if
+*..itemName is empty
+* ..description is empty
+* ..description contains less than 10 characters
+* ..price is empty
+* ..price contains less than 3 digits
+*/
+    companion object {
+        fun validateInput(
+            itemName: String,
+            description: String,
+            price: String,
+
+            ): Boolean {
+            if (itemName.isEmpty() || description.isEmpty() || price.isEmpty()) {
+                return false
+            }
+            if (itemName.count { it.isLetter() } < 5) {
+                return false
+            }
+            if (description.count { it.isLetter() } < 20) {
+                return false
+            }
+            if (price.count { it.isDigit() } < 4) {
+                return false
+            }
+            return true
+        }
+    }
+
+
+
+
+
 }

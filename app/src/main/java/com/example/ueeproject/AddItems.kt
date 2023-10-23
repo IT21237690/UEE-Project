@@ -38,17 +38,14 @@ class  AddItems : AppCompatActivity() {
 
 
 
-
-
-    private val getContent = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == RESULT_OK) {
-            val data: Intent? = result.data
-            imageUri = data?.data
-            imageView.setImageURI(imageUri)
+    private val getContent =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val data: Intent? = result.data
+                imageUri = data?.data
+                imageView.setImageURI(imageUri)
+            }
         }
-    }
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -180,4 +177,38 @@ class  AddItems : AppCompatActivity() {
     }
 
 
+    /*
+*input is not valid if
+*..itemName is empty
+* ..description is empty
+* ..description contains less than 10 characters
+* ..price is empty
+* ..price contains less than 3 digits
+*/
+    companion object {
+        fun validateInput(
+            itemName: String,
+            description: String,
+            price: String,
+
+            ): Boolean {
+            if (itemName.isEmpty() || description.isEmpty() || price.isEmpty()) {
+                return false
+            }
+            if (itemName.count { it.isLetter() } < 5) {
+                return false
+            }
+            if (description.count { it.isLetter() } < 20) {
+                return false
+            }
+            if (price.count { it.isDigit() } < 4) {
+                return false
+            }
+            return true
+        }
+    }
+
+
 }
+
+
