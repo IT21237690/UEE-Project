@@ -9,7 +9,7 @@ data class SellItem(
     var price: String = "",
     val imageUrl: String = "",
     val itemId : String = "",
-    val sellerId : String = "",
+    val sellerId : String? = "",
     var isChecked: Boolean = false,
     val Status : String = "Un Verified"
 ): Serializable
