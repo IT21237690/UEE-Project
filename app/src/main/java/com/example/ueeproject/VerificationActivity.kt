@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ueeproject.R
 import com.google.firebase.firestore.FirebaseFirestore
 
 class VerificationActivity : AppCompatActivity() {
@@ -37,7 +38,16 @@ class VerificationActivity : AppCompatActivity() {
                     return@addSnapshotListener
                 }
 
-                val items = snapshot?.toObjects(Comps::class.java) ?: emptyList()
+                val items = snapshot?.documents?.map { documentSnapshot ->
+                    val title = documentSnapshot.getString("itemName") ?: ""
+                    //val sellername = documentSnapshot.getString("sellername") ?: ""
+                    Comps(
+                        id = documentSnapshot.id,
+                        title = title,
+                        // sellername = sellername
+                    )
+                } ?: emptyList()
+
                 adapter.setItems(items)
             }
     }

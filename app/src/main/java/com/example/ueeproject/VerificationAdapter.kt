@@ -22,7 +22,8 @@ class VerificationAdapter : RecyclerView.Adapter<VerificationAdapter.ViewHolder>
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
 
-        holder.titleTextView.text = item.title
+        //holder.titleTextView.text = item.title
+        holder.titleTextView.text = "${item.title}"
         holder.verifyButton.setOnClickListener {
             // Update the verification status in Firestore when the "Verify" button is clicked
             updateVerificationStatus(item.id, "verified")
