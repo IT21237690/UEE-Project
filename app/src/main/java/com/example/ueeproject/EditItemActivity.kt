@@ -5,6 +5,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.Gravity
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -37,8 +39,7 @@ class EditItemActivity : AppCompatActivity() {
         updatedItemNameEditText = findViewById(R.id.editItemNameEditText)
         updatedDescriptionEditText = findViewById(R.id.editDescriptionEditText)
         updatedPriceEditText = findViewById(R.id.editPriceEditText)
-        updatedStartTimeEditText = findViewById(R.id.editTextStartTime)
-        updatedEndTimeEditText = findViewById(R.id.editTextEndTime)
+
         imageView = findViewById(R.id.imageView)
 
         val chooseImageButton: ImageView = findViewById(R.id.imageView)
@@ -193,20 +194,28 @@ class EditItemActivity : AppCompatActivity() {
                         updatedItemNameEditText.setText(updatedItemName)
                         updatedDescriptionEditText.setText(updatedDescription)
                         updatedPriceEditText.setText(updatedPrice)
-//                        updatedStartTimeEditText.setText(updatedStartTime)
-//                        updatedEndTimeEditText.setText(updatedEndTime)
+                        // updatedStartTimeEditText.setText(updatedStartTime)
+                        // updatedEndTimeEditText.setText(updatedEndTime)
 
-                        Toast.makeText(
-                            this,
-                            "Item details updated successfully!",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        // Create a custom Toast layout with a beautiful top-up message
+                        val inflater = layoutInflater
+                        val layout: View = inflater.inflate(
+                            R.layout.custom_toast,
+                            findViewById(R.id.custom_toast_container)
+                        )
+
+                        val toast = Toast(applicationContext)
+                        toast.duration = Toast.LENGTH_SHORT
+                        toast.setGravity(Gravity.TOP, 0, 32) // Adjust the Y offset as needed
+                        toast.view = layout
+                        toast.show()
 
                         // Navigate back to DisplayItemsActivity
                         val intent = Intent(this, DisplayItemsActivity::class.java)
                         startActivity(intent)
                         finish() // Close the current activity
                     }
+
                     .addOnFailureListener { e ->
                         // Handle the error if updating item details fails
                         Toast.makeText(
