@@ -11,7 +11,7 @@ data class SellItem(
     val itemId : String = "",
     val sellerId : String = "",
     var isChecked: Boolean = false,
-    val Status : String = ""
+    val Status : String = "Un Verified"
 ): Serializable
 {
 }

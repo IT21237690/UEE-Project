@@ -37,6 +37,7 @@ class buyerviewViewHolder(itemView: View, private val listener: buyerviewadapter
     private val itemNameTextView: TextView = itemView.findViewById(R.id.itemNameTextView)
     private val descriptionTextView: TextView = itemView.findViewById(R.id.descriptionTextView)
     private val priceTextView: TextView = itemView.findViewById(R.id.priceTextView)
+    private val statusTextView: TextView = itemView.findViewById(R.id.statusTextView)
 
     private val itemImageView: ImageView = itemView.findViewById(R.id.itemImageView)
 
@@ -45,6 +46,7 @@ class buyerviewViewHolder(itemView: View, private val listener: buyerviewadapter
         itemNameTextView.text = "Item Name: ${item.itemName}"
         descriptionTextView.text = "Description: ${item.description}"
         priceTextView.text = "Price: ${item.price}"
+        statusTextView.text = item.Status
 
 
 
