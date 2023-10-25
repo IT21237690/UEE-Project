@@ -1,5 +1,6 @@
 package com.example.ueeproject
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,15 +10,32 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ueeproject.databinding.ActivityHomeBinding
+import com.example.ueeproject.databinding.ActivityOngoingAuctionsBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
 class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickListener {
+
+    private lateinit var binding: ActivityOngoingAuctionsBinding
     private lateinit var recyclerView: RecyclerView
+
     private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ongoing_auctions)
+
+
+
+        binding = ActivityOngoingAuctionsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+
+        binding.AddButton.setOnClickListener {
+            startActivity(
+                Intent(this, AddToAuction::class.java)
+            )
+        }
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)

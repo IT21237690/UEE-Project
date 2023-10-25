@@ -58,3 +58,5 @@
         android:layout_toRightOf="@id/itemImageView"
         android:text="End Time: " />
 </RelativeLayout>
+
+

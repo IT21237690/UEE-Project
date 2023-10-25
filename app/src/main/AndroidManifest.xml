@@ -49,6 +49,18 @@
             android:name=".EditItemActivity"
             android:exported="false" />
         <activity
+            android:name=".DisplayAllSellers"
+            android:exported="false" />
+        <activity
+            android:name=".DisplaysellingItemsToBuyers"
+            android:exported="false" />
+        <activity
+            android:name=".DisplayItemsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SellerDetails"
+            android:exported="false" />
+        <activity
             android:name=".AddToAuction"
             android:exported="true" />
     </application>

@@ -135,6 +135,7 @@
                     app:srcCompat="@drawable/arrow" />
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/auctionIconlayout"
                 android:layout_width="match_parent"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
@@ -144,19 +145,19 @@
 
                 <ImageView
                     android:id="@+id/notificationIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="61dp"
+                    android:layout_height="62dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/notificationicon" />
+                    app:srcCompat="@drawable/auctionicon" />
 
                 <TextView
-                    android:id="@+id/notificationTag"
+                    android:id="@+id/MyAuctionTag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="Notifications"
+                    android:text="My Items In Auction"
                     android:textStyle="bold"
                     android:textColor="@color/dark_blue"
                     android:textSize="20sp"

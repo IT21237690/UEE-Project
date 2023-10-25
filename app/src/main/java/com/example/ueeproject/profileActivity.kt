@@ -1,5 +1,6 @@
 package com.example.ueeproject
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -27,6 +28,13 @@ class profileActivity : AppCompatActivity() {
 
         showName = findViewById(R.id.profileNameHeading)
         showEmail = findViewById(R.id.profileEmailHeading)
+
+
+        binding.auctionIconlayout.setOnClickListener {
+            startActivity(
+                Intent(this, DisplayItemsActivity::class.java)
+            )
+        }
 
         firebaseAuth = FirebaseAuth.getInstance()
         val uid = firebaseAuth.currentUser?.uid
