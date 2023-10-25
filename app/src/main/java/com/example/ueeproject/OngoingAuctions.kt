@@ -127,7 +127,8 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
                 val bidData = hashMapOf(
                     "itemId" to itemId,
                     "UserId" to uid,
-                    "bidAmount" to bidAmountValue
+                    "bidAmount" to bidAmountValue,
+                    "isWinner" to "true"
                 )
 
                 db.collection("Bids")

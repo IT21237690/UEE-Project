@@ -19,7 +19,7 @@
             android:name=".profileActivity"
             android:exported="false" />
         <activity
-            android:name=".DisplaysellingItemsToBuyers"
+            android:name=".BiddedItemsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,6 +36,11 @@
         <activity
             android:name=".OngoingAuctions"
             android:exported="false" />
+
+        <activity
+            android:name=".DisplaysellingItemsToBuyers"
+            android:exported="false" />
+
         <activity
             android:name=".AddItems"
             android:exported="false" />
