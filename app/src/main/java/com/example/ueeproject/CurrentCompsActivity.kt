@@ -1,4 +1,4 @@
-package com.example.comps
+package com.example.ueeproject
 
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
