@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.ueeproject.R
 //import com.google.android.material.navigation.NavigationBarView
 //import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
