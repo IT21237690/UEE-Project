@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -121,14 +122,19 @@ class  AddToAuction : AppCompatActivity() {
                 val endTimeText = endTimeEditText.text.toString()
 
                 if (itemName.isNotBlank() && description.isNotBlank() && price.isNotBlank() && startTimeText.isNotBlank() && endTimeText.isNotBlank() && imageUri != null) {
+                    // Get current time as timestamp
+                    val currentTime = System.currentTimeMillis()
+
                     // Convert start and end times to timestamps (Long values)
                     val startTime = convertToTimestamp(startTimeText)
                     val endTime = convertToTimestamp(endTimeText)
 
-                    // Validate if the conversion was successful
-                    if (startTime != null && endTime != null) {
+                    // Validate if the conversion was successful and times are not before current time
+                    if (startTime != null && endTime != null && startTime >= currentTime && endTime >= currentTime) {
                         // Call your uploadImageToStorage function with startTime and endTime as Long values
                         uploadImageToStorage(itemName, description, price, startTime, endTime)
+
+                        showSuccessPopup()
 
                         // Start DisplayItemsActivity after uploading data
                         val intent = Intent()
@@ -136,7 +142,7 @@ class  AddToAuction : AppCompatActivity() {
                         setResult(Activity.RESULT_OK, intent)
                         finish()
                     } else {
-                        showToast("Invalid date/time format. Please use a valid format.")
+                        showErrorPopup()
                     }
                 } else {
                     showToast("Please fill out all fields and select an image.")
@@ -147,6 +153,29 @@ class  AddToAuction : AppCompatActivity() {
             }
         }
 
+
+    }
+
+    private fun showErrorPopup() {
+        val successDialogBuilder = AlertDialog.Builder(this)
+            .setTitle("Error!")
+            .setMessage("Please add Future time")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+        val successDialog = successDialogBuilder.create()
+        successDialog.show()
+    }
+
+    private fun showSuccessPopup() {
+        val successDialogBuilder = AlertDialog.Builder(this)
+            .setTitle("Success!")
+            .setMessage("Added Successfully.")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+        val successDialog = successDialogBuilder.create()
+        successDialog.show()
     }
 
     private fun convertToTimestamp(dateTimeString: String): Long? {

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ueeproject.databinding.ActivityHomeBinding
 import com.example.ueeproject.databinding.ActivityOngoingAuctionsBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickListener {
@@ -20,6 +21,7 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
     private lateinit var recyclerView: RecyclerView
 
     private val db = FirebaseFirestore.getInstance()
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +38,8 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
                 Intent(this, AddToAuction::class.java)
             )
         }
+
+
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -68,6 +72,9 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
 
     override fun onItemClick(item: AuctionItem) {
         val itemId = item.itemId
+        firebaseAuth = FirebaseAuth.getInstance()
+        val uid = firebaseAuth.currentUser?.uid
+
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_bid_amount, null)
         val editTextBidAmount: EditText = dialogView.findViewById(R.id.editTextBidAmount)
         val buttonSubmitBid: Button = dialogView.findViewById(R.id.buttonSubmitBid)
@@ -89,6 +96,7 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
                 val db = FirebaseFirestore.getInstance()
                 val bidData = hashMapOf(
                     "itemId" to itemId,
+                    "UserId" to uid,
                     "bidAmount" to bidAmountValue
                 )
 
