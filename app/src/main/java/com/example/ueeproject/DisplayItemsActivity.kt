@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
@@ -67,25 +68,34 @@ class DisplayItemsActivity : AppCompatActivity() {
             override fun onDeleteClick(position: Int) {
                 val clickedItem = adapter.currentList[position]
                 val itemId = clickedItem.itemId
+                val startTime = clickedItem.startTime // Assuming startTime is a property in your AuctionItem class
 
-                // Delete item from Firestore
-                db.collection("Auction").document(itemId)
-                    .delete()
-                    .addOnSuccessListener {
-                        Log.d("FirestoreData", "DocumentSnapshot successfully deleted!")
+                // Get the current time in milliseconds
+                val currentTimeMillis = System.currentTimeMillis()
 
-                        // Show success message
-                        Toast.makeText(this@DisplayItemsActivity, "Item successfully deleted!", Toast.LENGTH_SHORT).show()
+                if (startTime > currentTimeMillis) {
+                    // Delete item from Firestore only if the starting time is greater than current time
+                    db.collection("Auction").document(itemId)
+                        .delete()
+                        .addOnSuccessListener {
+                            Log.d("FirestoreData", "DocumentSnapshot successfully deleted!")
 
-                        // Refresh the page to show updated data
-                        refreshData()
-                    }
-                    .addOnFailureListener { e ->
-                        Log.w("FirestoreData", "Error deleting document", e)
+                            // Show success message
+                            showSuccessPopup()
 
-                        // Show error message if deletion fails
-                        Toast.makeText(this@DisplayItemsActivity, "Error deleting item: ${e.message}", Toast.LENGTH_SHORT).show()
-                    }
+                            // Refresh the page to show updated data
+                            refreshData()
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w("FirestoreData", "Error deleting document", e)
+
+                            // Show error message if deletion fails
+                            Toast.makeText(this@DisplayItemsActivity, "Error deleting item: ${e.message}", Toast.LENGTH_SHORT).show()
+                        }
+                } else {
+                    // Show a message indicating the item cannot be deleted because the starting time has passed
+                    showErrorPopup()
+                }
             }
 
 
@@ -125,6 +135,29 @@ class DisplayItemsActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         refreshData()
+    }
+
+
+    private fun showSuccessPopup() {
+        val successDialogBuilder = AlertDialog.Builder(this)
+            .setTitle("Deleted!")
+            .setMessage("Item has been deleted successfully")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+        val successDialog = successDialogBuilder.create()
+        successDialog.show()
+    }
+
+    private fun showErrorPopup() {
+        val successDialogBuilder = AlertDialog.Builder(this)
+            .setTitle("Error!")
+            .setMessage("Item cannot be deleted as the auction has started or ended.")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+        val successDialog = successDialogBuilder.create()
+        successDialog.show()
     }
 
 
