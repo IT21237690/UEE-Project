@@ -1,4 +1,4 @@
-package com.example.comps
+package com.example.ueeproject
 
 import android.util.Log
 import android.view.LayoutInflater

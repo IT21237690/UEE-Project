@@ -1,4 +1,4 @@
-package com.example.comps
+package com.example.ueeproject
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
