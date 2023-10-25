@@ -24,5 +24,6 @@
     <color name="button_text_white">#FFFFFF</color>
     <color name="button_yellow">#EEC027</color>
     <color name="button_red">#D51212</color>
+    <color name="goal_row_color">#03a66a</color>
 
 </resources>
