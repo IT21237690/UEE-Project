@@ -31,7 +31,7 @@
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".SignInActivity"
             android:exported="false" />
         <activity
             android:name=".OngoingAuctions"
@@ -57,7 +57,7 @@
             android:name=".DisplayAllSellers"
             android:exported="false" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".HomeActivity"
             android:exported="false" />
         <activity
             android:name=".DisplayItemsActivity"

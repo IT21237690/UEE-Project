@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 class BiddedItemsAdapter(
     private val bidList: List<BidInfo>,
@@ -42,7 +44,32 @@ class BiddedItemsViewHolder(
         // Bind data to views
         itemTextView.text = "Item ID: ${bidInfo.itemId}"
         bidAmountTextView.text = "Bid Amount: ${bidInfo.bidAmount}"
-        resultTextView.text = if (bidInfo.isWinner) "You Won!" else "You Lost"
+
+        // Check if the bid is the winning bid
+        val db = FirebaseFirestore.getInstance()
+        db.collection("Bids")
+            .whereEqualTo("itemId", bidInfo.itemId) // Query bids for the same item
+            .orderBy("bidAmount", Query.Direction.DESCENDING) // Order by bidAmount in descending order
+            .limit(1) // Get the highest bid
+            .get()
+            .addOnSuccessListener { documents ->
+                if (!documents.isEmpty) {
+                    val highestBidInfo = documents.first().toObject(BidInfo::class.java)
+                    if (highestBidInfo != null && highestBidInfo.UserId == bidInfo.UserId) {
+                        // The current bid is the highest bid, mark it as the winner
+                        bidInfo.isWinner = true
+                        resultTextView.text = "You Won!"
+                    } else {
+                        // The current bid is not the winning bid
+                        bidInfo.isWinner = false
+                        resultTextView.text = "You Lost"
+                    }
+                } else {
+                    // There are no other bids for this item, mark it as the winner
+                    bidInfo.isWinner = true
+                    resultTextView.text = "You Won!"
+                }
+            }
 
         // Handle item click
         itemView.setOnClickListener {
@@ -50,5 +77,6 @@ class BiddedItemsViewHolder(
         }
     }
 }
+
 
 

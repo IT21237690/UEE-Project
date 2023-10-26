@@ -128,7 +128,7 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
                     "itemId" to itemId,
                     "UserId" to uid,
                     "bidAmount" to bidAmountValue,
-                    "isWinner" to "true"
+                    "isWinner" to ""
                 )
 
                 db.collection("Bids")
