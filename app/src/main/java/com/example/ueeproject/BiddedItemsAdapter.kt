@@ -1,9 +1,12 @@
 package com.example.ueeproject
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -49,7 +52,10 @@ class BiddedItemsViewHolder(
         val db = FirebaseFirestore.getInstance()
         db.collection("Bids")
             .whereEqualTo("itemId", bidInfo.itemId) // Query bids for the same item
-            .orderBy("bidAmount", Query.Direction.DESCENDING) // Order by bidAmount in descending order
+            .orderBy(
+                "bidAmount",
+                Query.Direction.DESCENDING
+            ) // Order by bidAmount in descending order
             .limit(1) // Get the highest bid
             .get()
             .addOnSuccessListener { documents ->
@@ -59,24 +65,45 @@ class BiddedItemsViewHolder(
                         // The current bid is the highest bid, mark it as the winner
                         bidInfo.isWinner = true
                         resultTextView.text = "You Won!"
+                        // Enable item click
+                        itemView.setOnClickListener {
+                            itemClickListener.invoke(bidInfo)
+                        }
                     } else {
                         // The current bid is not the winning bid
                         bidInfo.isWinner = false
                         resultTextView.text = "You Lost"
+                        // Disable item click
+                        itemView.setOnClickListener {
+                            // Show message indicating the user has lost the bet
+                            showLostBetMessage(itemView.context)
+                        }
                     }
                 } else {
                     // There are no other bids for this item, mark it as the winner
                     bidInfo.isWinner = true
                     resultTextView.text = "You Won!"
+                    // Enable item click
+                    itemView.setOnClickListener {
+                        itemClickListener.invoke(bidInfo)
+                    }
                 }
             }
+    }
 
-        // Handle item click
-        itemView.setOnClickListener {
-            itemClickListener.invoke(bidInfo)
-        }
+    private fun showLostBetMessage(context: Context) {
+        val successDialogBuilder = AlertDialog.Builder(context)
+            .setTitle("Sorry!")
+            .setMessage("You Lost The Bet")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+        val successDialog = successDialogBuilder.create()
+        successDialog.show()
     }
 }
+
+
 
 
 
