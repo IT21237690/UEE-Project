@@ -23,7 +23,7 @@ class VerificationActivity : AppCompatActivity() {
         // Set up RecyclerView with LinearLayoutManager
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
-
+        recyclerView.addItemDecoration(DividerItemDecoration(this))
         // Load data from Firestore and populate the RecyclerView
         loadItemsFromFirestore()
     }
