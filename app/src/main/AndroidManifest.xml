@@ -16,6 +16,12 @@
         android:theme="@style/Theme.UEEProject"
         tools:targetApi="31">
         <activity
+            android:name=".UpdateUserDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViewDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".profileActivity"
             android:exported="false" />
         <activity
@@ -31,11 +37,16 @@
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".BiddedItemsActivity"
             android:exported="false" />
         <activity
             android:name=".OngoingAuctions"
             android:exported="false" />
+
+        <activity
+            android:name=".DisplaysellingItemsToBuyers"
+            android:exported="false" />
+
         <activity
             android:name=".AddItems"
             android:exported="false" />
@@ -52,7 +63,7 @@
             android:name=".DisplayAllSellers"
             android:exported="false" />
         <activity
-            android:name=".DisplaysellingItemsToBuyers"
+            android:name=".HomeActivity"
             android:exported="false" />
         <activity
             android:name=".DisplayItemsActivity"
@@ -62,6 +73,9 @@
             android:exported="false" />
         <activity
             android:name=".AddToAuction"
+            android:exported="true" />
+        <activity
+            android:name=".ItemDetailsActivity"
             android:exported="true" />
 
         <!--Pasindu-->

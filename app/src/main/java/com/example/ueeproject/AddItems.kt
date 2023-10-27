@@ -14,6 +14,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.text.ParseException
@@ -33,6 +34,7 @@ class  AddItems : AppCompatActivity() {
     private lateinit var priceEditText: EditText
     private lateinit var saveButton: Button
     private val db = FirebaseFirestore.getInstance()
+    private lateinit var firebaseAuth: FirebaseAuth
     private val storageRef = FirebaseStorage.getInstance().reference
     private var imageUri: Uri? = null
 
@@ -50,6 +52,9 @@ class  AddItems : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_additem)
+
+        firebaseAuth = FirebaseAuth.getInstance()
+        val uid = firebaseAuth.currentUser?.uid
 
 
         imageView = findViewById(R.id.imageView2)
@@ -70,7 +75,8 @@ class  AddItems : AppCompatActivity() {
                 val description = descriptionEditText.text.toString()
                 val price = priceEditText.text.toString()
                 val IsChecked: Boolean = checkBoxIsChecked.isChecked // Initialize IsChecked with a boolean value
-                val Status: String = ""
+                val Status: String = "Un Verified"
+                val sellerId : String? = uid
 
 
 
@@ -81,7 +87,7 @@ class  AddItems : AppCompatActivity() {
                     // Validate if the conversion was successful
 
                         // Call your uploadImageToStorage function with startTime and endTime as Long values
-                        uploadImageToStorage(itemName, description, price, IsChecked ,Status)
+                        uploadImageToStorage(itemName, description, price, IsChecked ,Status,sellerId)
 
                         // Start DisplayItemsActivity after uploading data
                     val intent = Intent(this, SellItemsDisplay::class.java)
@@ -109,7 +115,8 @@ class  AddItems : AppCompatActivity() {
         description: String,
         price: String,
         IsChecked: Boolean,
-        Status: String
+        Status: String,
+        sellerId : String?
 
     ) {
         val imageFileName = "${UUID.randomUUID()}.jpg"
@@ -126,7 +133,8 @@ class  AddItems : AppCompatActivity() {
                         price,
                         imageUrl,
                         IsChecked,
-                        Status
+                        Status,
+                        sellerId
 
                     )
                 }
@@ -144,7 +152,8 @@ class  AddItems : AppCompatActivity() {
         price: String,
         imageUrl: String,
         IsChecked: Boolean,
-        Status: String
+        Status: String,
+        sellerId : String?
     ) {
         // Generate a unique itemId
         val itemId = UUID.randomUUID().toString()
@@ -156,7 +165,8 @@ class  AddItems : AppCompatActivity() {
             "price" to price,
             "imageUrl" to imageUrl,
             "IsChecked" to  IsChecked,
-            "Status" to Status
+            "Status" to Status,
+            "sellerId" to sellerId
         )
 
         // Use the generated itemId as the document ID

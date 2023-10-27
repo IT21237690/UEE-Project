@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.text.ParseException
@@ -37,6 +38,7 @@ class  AddToAuction : AppCompatActivity() {
     private val storageRef = FirebaseStorage.getInstance().reference
     private var imageUri: Uri? = null
     val calendar = Calendar.getInstance()
+    private lateinit var firebaseAuth: FirebaseAuth
 
 
 
@@ -61,6 +63,9 @@ class  AddToAuction : AppCompatActivity() {
         startTimeEditText = findViewById(R.id.editTextStartTime)
         endTimeEditText = findViewById(R.id.editTextEndTime)
         saveButton = findViewById(R.id.saveButton)
+
+        firebaseAuth = FirebaseAuth.getInstance()
+        val uid = firebaseAuth.currentUser?.uid
 
         imageView.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -116,6 +121,7 @@ class  AddToAuction : AppCompatActivity() {
                 val itemName = itemNameEditText.text.toString()
                 val description = descriptionEditText.text.toString()
                 val price = priceEditText.text.toString()
+                val userId = uid
 
                 // Check if start and end times are not blank
                 val startTimeText = startTimeEditText.text.toString()
@@ -132,7 +138,9 @@ class  AddToAuction : AppCompatActivity() {
                     // Validate if the conversion was successful and times are not before current time
                     if (startTime != null && endTime != null && startTime >= currentTime && endTime >= currentTime) {
                         // Call your uploadImageToStorage function with startTime and endTime as Long values
-                        uploadImageToStorage(itemName, description, price, startTime, endTime)
+                        if (userId != null) {
+                            uploadImageToStorage(itemName, description, price, startTime, endTime,userId)
+                        }
 
                         showSuccessPopup()
 
@@ -231,6 +239,7 @@ class  AddToAuction : AppCompatActivity() {
         price: String,
         startTime: Long,
         endTime: Long,
+        userId:String,
     ) {
         val imageFileName = "${UUID.randomUUID()}.jpg"
         val itemId = UUID.randomUUID().toString() // Generate a unique ID
@@ -246,7 +255,8 @@ class  AddToAuction : AppCompatActivity() {
                         price,
                         startTime,
                         endTime,
-                        imageUrl
+                        imageUrl,
+                        userId
                     )
                 }
             }
@@ -263,7 +273,8 @@ class  AddToAuction : AppCompatActivity() {
         price: String,
         startTime: Long,
         endTime: Long,
-        imageUrl: String
+        imageUrl: String,
+        userId :String
     ) {
         // Generate a unique itemId
         val itemId = UUID.randomUUID().toString()
@@ -275,7 +286,8 @@ class  AddToAuction : AppCompatActivity() {
             "price" to price,
             "startTime" to startTime,
             "endTime" to endTime,
-            "imageUrl" to imageUrl
+            "imageUrl" to imageUrl,
+            "userId" to userId
         )
 
         // Use the generated itemId as the document ID

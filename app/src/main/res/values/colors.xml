@@ -6,6 +6,7 @@
     <color name="g_black">#171717</color>
     <color name="dark_blue">#32357a</color>
     <color name="light_blue">#f2f1f6</color>
+    <color name="btn_blue">#0583F2</color>
 
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>

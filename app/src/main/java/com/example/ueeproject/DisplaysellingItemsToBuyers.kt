@@ -19,7 +19,7 @@ class DisplaysellingItemsToBuyers : AppCompatActivity(), buyerviewadapter.OnItem
 
         // Fetch data from Firestore
         val db = FirebaseFirestore.getInstance()
-        db.collection("AddItems")
+        db.collection("Sell Items")
             .get()
             .addOnSuccessListener { documents ->
                 val itemList = mutableListOf<SellItem>()

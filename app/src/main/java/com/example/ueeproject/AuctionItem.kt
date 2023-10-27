@@ -9,5 +9,7 @@ data class AuctionItem(
     val startTime: Long = 0,
     val endTime: Long = 0,
     val imageUrl: String = "",
-    val itemId : String = ""
+    val itemId : String = "",
+    val UserId: String = ""
+
 ): Serializable
