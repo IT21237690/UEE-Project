@@ -2,6 +2,9 @@ package com.example.ueeproject
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,6 +34,22 @@ class DisplayAllSellers : AppCompatActivity(), sellersadapter.OnItemClickListene
                 // Initialize and set up the adapter
                 val adapter = sellersadapter(itemList, this)
                 recyclerView.adapter = adapter
+
+                // Search functionality
+                val searchEditText: EditText = findViewById(R.id.searchEditText)
+                searchEditText.addTextChangedListener(object : TextWatcher {
+                    override fun afterTextChanged(s: Editable?) {
+                        adapter.filter(s.toString())
+                    }
+
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                        // Not used, but need to override
+                    }
+
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                        // Not used, but need to override
+                    }
+                })
             }
             .addOnFailureListener { exception ->
                 // Handle errors
@@ -38,11 +57,9 @@ class DisplayAllSellers : AppCompatActivity(), sellersadapter.OnItemClickListene
     }
 
     override fun onItemClick(item: Seller) {
-        // Handle item click by opening ItemDetailsActivity
+        // Handle item click by opening SellerDetailsActivity
         val intent = Intent(this, SellerDetails::class.java)
-        intent.putExtra("ITEM_ID", item.User_ID) // Assuming your SellItem class has a property named 'id' for item ID
+        intent.putExtra("ITEM_ID", item.User_ID) // Assuming your Seller class has a property named 'User_ID' for item ID
         startActivity(intent)
     }
-
-
 }

@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 
-class sellersadapter(private val items: List<Seller>, private val listener: OnItemClickListener) : RecyclerView.Adapter<sellersviewViewHolder>() {
+class sellersadapter(private val originalItems: List<Seller>, private val listener: OnItemClickListener) : RecyclerView.Adapter<sellersviewViewHolder>() {
+
+    private var filteredItems: List<Seller> = originalItems.toMutableList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): sellersviewViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -18,18 +20,29 @@ class sellersadapter(private val items: List<Seller>, private val listener: OnIt
     }
 
     override fun onBindViewHolder(holder: sellersviewViewHolder, position: Int) {
-        val item = items[position]
+        val item = filteredItems[position]
         holder.bind(item)
     }
 
     override fun getItemCount(): Int {
-        return items.size
+        return filteredItems.size
     }
 
     interface OnItemClickListener {
         fun onItemClick(item: Seller)
     }
+
+    fun filter(query: String) {
+        filteredItems = originalItems.filter {
+            it.name.contains(query, ignoreCase = true) ||
+                    it.email.contains(query, ignoreCase = true) ||
+                    it.phone.contains(query, ignoreCase = true) ||
+                    it.address.contains(query, ignoreCase = true)
+        }
+        notifyDataSetChanged()
+    }
 }
+
 
 
 class sellersviewViewHolder(itemView: View, private val listener: sellersadapter.OnItemClickListener) : RecyclerView.ViewHolder(itemView) {
