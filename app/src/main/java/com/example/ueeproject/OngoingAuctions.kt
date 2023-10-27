@@ -33,6 +33,19 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
         userMaleImageView = findViewById(R.id.user_male)
         home = findViewById(R.id.home)
 
+        userMaleImageView.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@OngoingAuctions, profileActivity::class.java)
+            startActivity(intent)
+        }
+
+        home.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@OngoingAuctions, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
+
 
 
         binding = ActivityOngoingAuctionsBinding.inflate(layoutInflater)
@@ -45,17 +58,6 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
             )
         }
 
-        userMaleImageView.setOnClickListener {
-            // Navigate to AddItemActivity when user_male ImageView is clicked
-            val intent = Intent(this@OngoingAuctions, profileActivity::class.java)
-            startActivity(intent)
-        }
-
-        home.setOnClickListener {
-            // Navigate to AddItemActivity when user_male ImageView is clicked
-            val intent = Intent(this@OngoingAuctions, HomeActivity::class.java)
-            startActivity(intent)
-        }
 
 
 
