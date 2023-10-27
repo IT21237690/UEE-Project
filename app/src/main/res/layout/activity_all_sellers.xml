@@ -7,6 +7,7 @@
     android:background="#BCBCBC"
     tools:context=".DisplayAllSellers">
 
+
     <TextView
         android:id="@+id/add_item_to_auction2"
         android:layout_width="324dp"
@@ -18,10 +19,23 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.195" />
+        app:layout_constraintVertical_bias="0.112" />
+
+    <EditText
+        android:id="@+id/searchEditText"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:hint="Search Sellers"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_item_to_auction2"
+        app:layout_constraintVertical_bias="0.275" />
 
     <ImageView
         android:id="@+id/home3"
@@ -43,23 +57,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.958"
-        app:layout_constraintStart_toEndOf="@+id/home"
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.042" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="394dp"
-        android:layout_height="480dp"
-
-        android:orientation="vertical"
+        android:layout_width="393dp"
+        android:layout_height="270dp"
+        android:layout_marginTop="160dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.749" />
+        app:layout_constraintTop_toBottomOf="@+id/add_item_to_auction2"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
