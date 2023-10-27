@@ -36,7 +36,7 @@ class ItemDetailsActivity : AppCompatActivity() {
         // Sample code (assuming you have a Firestore collection named "AddItems")
         val db = FirebaseFirestore.getInstance()
         // Fetch item details based on item ID
-        db.collection("AddItems").document(itemId!!)
+        db.collection("Sell Items").document(itemId!!)
             .get()
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {

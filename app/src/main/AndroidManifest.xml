@@ -25,7 +25,7 @@
             android:name=".profileActivity"
             android:exported="false" />
         <activity
-            android:name=".DisplayAllSellers"
+            android:name=".SignInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,7 +60,7 @@
             android:name=".EditItemActivity"
             android:exported="false" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".DisplayAllSellers"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"

@@ -27,7 +27,7 @@
     <EditText
         android:id="@+id/searchEditText"
         android:layout_width="411dp"
-        android:layout_height="wrap_content"
+        android:layout_height="69dp"
         android:hint="Search Sellers"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".DisplaysellingItemsToBuyers">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -289,11 +290,11 @@
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:clipToPadding="false"
-                        android:paddingStart="24dp"
-                        android:paddingEnd="24dp" />
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
