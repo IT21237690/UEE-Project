@@ -1,5 +1,6 @@
 package com.example.ueeproject
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -77,6 +78,7 @@ class SellItemViewHolder(itemView: View, private val itemClickListener: SellItem
         }
     }
 
+    @SuppressLint("SetTextI18n")
     fun bind(item: SellItem) {
         itemNameTextView.text = "Item Name: ${item.itemName}"
         descriptionTextView.text = "Description: ${item.description}"
