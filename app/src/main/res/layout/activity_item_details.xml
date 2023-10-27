@@ -5,6 +5,22 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <ImageView
+        android:id="@+id/itemImageView"
+        android:layout_width="341dp"
+        android:layout_height="177dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop" />
+
+
+    <TextView
+        android:id="@+id/aaa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/itemNameTextView"
         android:layout_width="wrap_content"
@@ -29,12 +45,7 @@
         android:textSize="16sp"
         android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/itemImageView"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:layout_marginTop="16dp"/>
+
 
     <TextView
         android:id="@+id/sellerNameTextView"
@@ -51,6 +62,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Seller Email: "
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/sellerphoneTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Contact Number: "
         android:textSize="16sp"
         android:textStyle="bold" />
 
