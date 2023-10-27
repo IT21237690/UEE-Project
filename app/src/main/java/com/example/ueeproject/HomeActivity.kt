@@ -39,6 +39,12 @@ class HomeActivity : AppCompatActivity() {
             )
         }
 
+        binding.textView6.setOnClickListener {
+            startActivity(
+                Intent(this, DisplaysellingItemsToBuyers::class.java)
+            )
+        }
+
         binding.sellersiconlayout.setOnClickListener {
             startActivity(
                 Intent(this, DisplayAllSellers::class.java)
