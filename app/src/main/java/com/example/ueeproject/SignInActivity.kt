@@ -1,9 +1,9 @@
 package com.example.ueeproject
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.ueeproject.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -31,16 +31,27 @@ class SignInActivity : AppCompatActivity() {
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
 
-                firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+                if(email == "admin" && password == "admin123")
+                {
+                    val intent = Intent(this, VerificationActivity::class.java)
+                    startActivity(intent)
+                }
+                else{
 
-                    if(it.isSuccessful){
-                        val intent = Intent(this, HomeActivity::class.java)
-                        startActivity(intent)
-                    }else{
-                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                    firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+
+                        if(it.isSuccessful){
+                            val intent = Intent(this, HomeActivity::class.java)
+                            startActivity(intent)
+                        }else{
+                            Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                        }
+
                     }
 
                 }
+
+
 
             } else {
 
