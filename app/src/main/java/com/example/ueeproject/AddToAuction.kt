@@ -40,6 +40,9 @@ class  AddToAuction : AppCompatActivity() {
     val calendar = Calendar.getInstance()
     private lateinit var firebaseAuth: FirebaseAuth
 
+    private lateinit var userMaleImageView: ImageView
+    private lateinit var home: ImageView
+
 
 
 
@@ -63,6 +66,21 @@ class  AddToAuction : AppCompatActivity() {
         startTimeEditText = findViewById(R.id.editTextStartTime)
         endTimeEditText = findViewById(R.id.editTextEndTime)
         saveButton = findViewById(R.id.saveButton)
+
+        userMaleImageView = findViewById(R.id.user_male)
+        home = findViewById(R.id.home)
+
+        userMaleImageView.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@AddToAuction, profileActivity::class.java)
+            startActivity(intent)
+        }
+
+        home.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@AddToAuction, HomeActivity::class.java)
+            startActivity(intent)
+        }
 
         firebaseAuth = FirebaseAuth.getInstance()
         val uid = firebaseAuth.currentUser?.uid

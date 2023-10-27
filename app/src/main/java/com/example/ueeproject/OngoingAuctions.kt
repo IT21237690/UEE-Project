@@ -33,17 +33,6 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
         userMaleImageView = findViewById(R.id.user_male)
         home = findViewById(R.id.home)
 
-        userMaleImageView.setOnClickListener {
-            // Navigate to AddItemActivity when user_male ImageView is clicked
-            val intent = Intent(this@OngoingAuctions, profileActivity::class.java)
-            startActivity(intent)
-        }
-
-        home.setOnClickListener {
-            // Navigate to AddItemActivity when user_male ImageView is clicked
-            val intent = Intent(this@OngoingAuctions, HomeActivity::class.java)
-            startActivity(intent)
-        }
 
 
 
@@ -63,6 +52,19 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        userMaleImageView.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@OngoingAuctions, profileActivity::class.java)
+            startActivity(intent)
+        }
+
+        home.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@OngoingAuctions, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
 
         // Query Firestore to get ongoing items
         val currentTime = System.currentTimeMillis()
