@@ -51,6 +51,7 @@ class HomeActivity : AppCompatActivity() {
             )
         }
 
+
         firebaseAuth = FirebaseAuth.getInstance()
         val uid = firebaseAuth.currentUser?.uid
 
