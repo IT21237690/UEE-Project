@@ -6,7 +6,38 @@
     android:layout_height="match_parent"
     android:background="#BCBCBC"
     android:backgroundTint="#BCBCBC"
-    android:foregroundTint="#000000">>
+    android:foregroundTint="#000000"><![CDATA[>
+
+
+
+    ]]>
+
+    <ImageView
+        android:id="@+id/user_male6"
+        android:layout_width="85dp"
+        android:layout_height="78dp"
+        android:layout_marginEnd="20dp"
+        android:contentDescription="user_male"
+        android:src="@drawable/user_male"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.958"
+        app:layout_constraintStart_toEndOf="@+id/home2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03" />
+
+    <ImageView
+        android:id="@+id/home6"
+        android:layout_width="78dp"
+        android:layout_height="68dp"
+
+        android:src="@drawable/home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04" />
 
     <TextView
         android:id="@+id/textView"
