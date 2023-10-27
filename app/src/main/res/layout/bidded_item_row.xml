@@ -4,15 +4,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="#BCBCBC"
-    android:backgroundTint="#BCBCBC"
+    android:background="#D9D9D9"
     android:foregroundTint="#000000">
 
     <TextView
         android:id="@+id/itemTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Item ID"
+        android:text="Item Id:"
         android:textSize="16sp"
         android:textStyle="bold" />
 

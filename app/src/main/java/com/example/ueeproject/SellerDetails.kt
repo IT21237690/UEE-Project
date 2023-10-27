@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -133,7 +134,7 @@ class SellerDetails : AppCompatActivity() {
                         .update(feedbackData as Map<String, Any>)
                         .addOnSuccessListener {
                             // Feedback saved successfully
-                            Toast.makeText(this, "Feedback saved!", Toast.LENGTH_SHORT).show()
+                            showSuccessPopup()
                         }
                         .addOnFailureListener {
                             // Handle errors related to saving feedback
@@ -142,5 +143,16 @@ class SellerDetails : AppCompatActivity() {
                         }
                 }
             }
+    }
+
+    private fun showSuccessPopup() {
+        val successDialogBuilder = AlertDialog.Builder(this)
+            .setTitle("Done!")
+            .setMessage("Thank You for Your Feedback")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+        val successDialog = successDialogBuilder.create()
+        successDialog.show()
     }
 }

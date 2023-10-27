@@ -27,6 +27,7 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
     private lateinit var userMaleImageView: ImageView
     private lateinit var home: ImageView
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ongoing_auctions)
@@ -44,6 +45,12 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
         binding.AddButton.setOnClickListener {
             startActivity(
                 Intent(this, AddToAuction::class.java)
+            )
+        }
+
+        binding.bidsButton.setOnClickListener {
+            startActivity(
+                Intent(this, BiddedItemsActivity::class.java)
             )
         }
 
@@ -146,9 +153,11 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
                 // Save bid amount and item ID to the Bids collection in Firestore
                 val bidData = hashMapOf(
                     "itemId" to itemId,
+                    "itemName" to itemId,
                     "UserId" to uid,
                     "bidAmount" to bidAmountValue,
                     "isWinner" to ""
+
                 )
 
                 db.collection("Bids")

@@ -1,7 +1,9 @@
 package com.example.ueeproject
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +16,8 @@ class BiddedItemsActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: BiddedItemsAdapter
+    private lateinit var userMaleImageView: ImageView
+    private lateinit var home: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +25,21 @@ class BiddedItemsActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.biddedItemsRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        userMaleImageView = findViewById(R.id.user_male)
+        home = findViewById(R.id.home)
+
+        userMaleImageView.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@BiddedItemsActivity, profileActivity::class.java)
+            startActivity(intent)
+        }
+
+        home.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@BiddedItemsActivity, HomeActivity::class.java)
+            startActivity(intent)
+        }
 
         val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
 

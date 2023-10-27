@@ -5,12 +5,11 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.Gravity
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
@@ -174,16 +173,9 @@ class EditItemActivity : AppCompatActivity() {
 //                                updatedStartTimeEditText.setText(updatedStartTime)
 //                                updatedEndTimeEditText.setText(updatedEndTime)
 
-                                Toast.makeText(
-                                    this,
-                                    "Item details updated successfully!",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                showSuccessPopup()
 
-                                // Navigate back to DisplayItemsActivity
-                                val intent = Intent(this, DisplayItemsActivity::class.java)
-                                startActivity(intent)
-                                finish() // Close the current activity
+
                             }
                             .addOnFailureListener { e ->
                                 // Handle the error if updating item details fails
@@ -216,22 +208,11 @@ class EditItemActivity : AppCompatActivity() {
                         // updatedEndTimeEditText.setText(updatedEndTime)
 
                         // Create a custom Toast layout with a beautiful top-up message
-                        val inflater = layoutInflater
-                        val layout: View = inflater.inflate(
-                            R.layout.custom_toast,
-                            findViewById(R.id.custom_toast_container)
-                        )
 
-                        val toast = Toast(applicationContext)
-                        toast.duration = Toast.LENGTH_SHORT
-                        toast.setGravity(Gravity.TOP, 0, 32) // Adjust the Y offset as needed
-                        toast.view = layout
-                        toast.show()
 
                         // Navigate back to DisplayItemsActivity
-                        val intent = Intent(this, DisplayItemsActivity::class.java)
-                        startActivity(intent)
-                        finish() // Close the current activity
+                        showSuccessPopup()
+
                     }
 
                     .addOnFailureListener { e ->
@@ -250,6 +231,23 @@ class EditItemActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         }
+    }
+
+
+    private fun showSuccessPopup() {
+        val successDialogBuilder = AlertDialog.Builder(this)
+            .setTitle("Done!")
+            .setMessage("Details Updated")
+            .setPositiveButton("OK") { dialog, _ ->
+                val intent = Intent(this, DisplayItemsActivity::class.java)
+                startActivity(intent)
+                finish() // Close the current activity
+                dialog.dismiss()
+            }
+
+        val successDialog = successDialogBuilder.create()
+        successDialog.show()
+
     }
 
 

@@ -1,7 +1,6 @@
 package com.example.ueeproject
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
@@ -37,20 +36,9 @@ class ItemDetailsActivity : AppCompatActivity() {
         sellerNameTextView = findViewById(R.id.sellerNameTextView)
         sellerEmailTextView = findViewById(R.id.sellerEmailTextView)
         sellerphoneTextView = findViewById(R.id.sellerphoneTextView)
-        userMaleImageView = findViewById(R.id.user_male)
-        home = findViewById(R.id.home)
 
-        userMaleImageView.setOnClickListener {
-            // Navigate to AddItemActivity when user_male ImageView is clicked
-            val intent = Intent(this@ItemDetailsActivity, profileActivity::class.java)
-            startActivity(intent)
-        }
 
-        home.setOnClickListener {
-            // Navigate to AddItemActivity when user_male ImageView is clicked
-            val intent = Intent(this@ItemDetailsActivity, HomeActivity::class.java)
-            startActivity(intent)
-        }
+
 
         // Sample code (assuming you have a Firestore collection named "AddItems")
         val db = FirebaseFirestore.getInstance()

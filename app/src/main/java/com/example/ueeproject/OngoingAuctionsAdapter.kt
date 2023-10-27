@@ -43,7 +43,7 @@ class OngoingAuctionsViewHolder(itemView: View, private val listener: OngoingAuc
     private val dateFormat = SimpleDateFormat("EEE, MMM dd, yyyy hh:mm a", Locale.getDefault())
 
     fun bind(item: AuctionItem) {
-        itemNameTextView.text = "Item Name: ${item.itemName}"
+        itemNameTextView.text = "Item Id: ${item.itemName}"
         descriptionTextView.text = "Description: ${item.description}"
         priceTextView.text = "Price: ${item.price}"
 
