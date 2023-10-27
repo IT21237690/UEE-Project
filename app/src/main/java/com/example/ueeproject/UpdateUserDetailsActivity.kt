@@ -20,15 +20,34 @@ import com.google.firebase.ktx.Firebase
 
 class UpdateUserDetailsActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityUpdateUserDetailsBinding
+
     private lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_update_user_details)
+
+        binding = ActivityUpdateUserDetailsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.profileButton.setOnClickListener {
+            startActivity(
+                Intent(this, profileActivity::class.java)
+            )
+        }
+
+        binding.homeButton.setOnClickListener {
+            startActivity(
+                Intent(this, HomeActivity::class.java)
+            )
+        }
 
         val updateName: EditText = findViewById(R.id.updateName)
         val updateEmail: EditText = findViewById(R.id.updateEmail)
+        val updateAddress: EditText = findViewById(R.id.updateAddress)
+        val updatePhone: EditText = findViewById(R.id.updatePhone)
+        val updatePassword: EditText = findViewById(R.id.updatePassword)
 
         val EditDetails: Button = findViewById(R.id.EditDetails)
 
@@ -43,9 +62,15 @@ class UpdateUserDetailsActivity : AppCompatActivity() {
                 if(document != null) {
                     val name = document.getString("name")
                     val email = document.getString("email")
+                    val address = document.getString("address")
+                    val phone = document.getString("phone")
+                    val password = document.getString("password")
 
                     updateName.setText(name)
                     updateEmail.setText(email)
+                    updateAddress.setText(address)
+                    updatePhone.setText(phone)
+                    updatePassword.setText(password)
 
                 }else{
                     Log.d("EditProfile", "No such document")
@@ -58,8 +83,11 @@ class UpdateUserDetailsActivity : AppCompatActivity() {
         EditDetails.setOnClickListener {
             val newName = updateName.text.toString().trim()
             val newEmail = updateEmail.text.toString().trim()
+            val newAddress = updateAddress.text.toString().trim()
+            val newPhone = updatePhone.text.toString().trim()
+            val newPassword = updatePassword.text.toString().trim()
 
-            if (newName.isEmpty() || newEmail.isEmpty()){
+            if (newName.isEmpty() || newEmail.isEmpty() || newAddress.isEmpty() || newPhone.isEmpty()){
                 Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -83,16 +111,65 @@ class UpdateUserDetailsActivity : AppCompatActivity() {
                     Log.d("EditProfile", "update failed with ", exception)
                 }
 
-            // Update the user's email address.
-            FirebaseAuth.getInstance().currentUser?.updateEmail(newEmail)?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    // The user's email address has been updated successfully.
-                    Toast.makeText(this, "Your email address has been updated successfully.", Toast.LENGTH_SHORT).show()
-                } else {
-                    // The user's email address could not be updated.
-                    Toast.makeText(this, "An error occurred while updating your email address.", Toast.LENGTH_SHORT).show()
+            // update userEmail
+            val user = auth.currentUser
+            val credential = EmailAuthProvider.getCredential(user?.email!!, newPassword)
+
+            user?.reauthenticate(credential)?.addOnSuccessListener {
+                user.updateEmail(newEmail).addOnSuccessListener {
+                    // Update the user's email in Firestore
+                    db.collection("users")
+                        .document(auth.currentUser!!.uid)
+                        .update("email", newEmail)
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "Profile updated", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this, Profile::class.java))
+                        }
+                        .addOnFailureListener { exception ->
+                            Log.d("EditProfile", "update failed with ", exception)
+                            // handle exception here
+                        }
+                }.addOnFailureListener { exception ->
+                    Log.d("EditProfile", "update failed with ", exception)
+                    // handle exception here
                 }
+            }?.addOnFailureListener { exception ->
+                Log.d("EditProfile", "reauthentication failed with ", exception)
+                // handle exception here
             }
+
+            //Update user address
+            db.collection("users")
+                .document(auth.currentUser!!.uid)
+                .update("address", newAddress)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Profile updated", Toast.LENGTH_SHORT).show()
+                    startActivity(
+                        Intent(this, Profile::class.java)
+                    )
+                }
+                .addOnFailureListener { exception ->
+                    Log.d("EditProfile", "update failed with ", exception)
+                }
+
+            //update user Phone
+            db.collection("users")
+                .document(auth.currentUser!!.uid)
+                .update("phone", newPhone)
+                .addOnSuccessListener {
+
+                    Toast.makeText(this, "Profile updated", Toast.LENGTH_SHORT).show()
+                    startActivity(
+                        Intent(this, Profile::class.java)
+                    )
+
+                }
+                .addOnFailureListener { exception ->
+                    Log.d("EditProfile", "update failed with ", exception)
+                    // handle exception here
+                }
+
+
 
         }
 

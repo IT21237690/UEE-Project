@@ -70,7 +70,7 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="32dp"
                     android:text="Find Your Favourites\nHere!"
-                    android:textColor="@color/white"
+                    android:textColor="@color/dark_blue"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 

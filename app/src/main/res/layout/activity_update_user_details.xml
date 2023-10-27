@@ -8,6 +8,29 @@
     tools:context=".UpdateUserDetailsActivity">
 
     <!--    View Details section-->
+
+    <ImageView
+        android:id="@+id/homeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/homenew" />
+
+    <ImageView
+        android:id="@+id/profileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/homeButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/profilenew" />
+
     <TextView
         android:id="@+id/UserNameHeading"
         android:layout_width="269dp"
@@ -32,7 +55,7 @@
         android:layout_marginTop="100dp"
         android:fontFamily="@font/poppins_medium"
         android:text="Name"
-        android:textColor="@color/btn_blue"
+        android:textColor="@color/dark_blue"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +87,7 @@
         android:layout_marginTop="200dp"
         android:fontFamily="@font/poppins_medium"
         android:text="Email"
-        android:textColor="@color/btn_blue"
+        android:textColor="@color/dark_blue"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +106,105 @@
         android:inputType="textPersonName"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.423"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UserNameHeading" />
+
+    <!--    Update user address-->
+
+    <TextView
+        android:id="@+id/addressTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Address"
+        android:textColor="@color/dark_blue"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UserNameHeading" />
+
+    <EditText
+        android:id="@+id/updateAddress"
+        android:layout_width="293dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="325dp"
+        android:ems="10"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="Enter Your address"
+        android:inputType="textPersonName"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.415"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UserNameHeading" />
+
+    <!--    Update user phone-->
+
+    <TextView
+        android:id="@+id/phoneTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="phone"
+        android:textColor="@color/dark_blue"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UserNameHeading" />
+
+    <EditText
+        android:id="@+id/updatePhone"
+        android:layout_width="293dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="425dp"
+        android:ems="10"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="Enter Your phone number"
+        android:inputType="textPersonName"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.415"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UserNameHeading" />
+
+    <!--    Update user password-->
+
+    <TextView
+        android:id="@+id/passwordTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="460dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="password"
+        android:textColor="@color/dark_blue"
+        android:visibility="invisible"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UserNameHeading" />
+
+    <EditText
+        android:id="@+id/updatePassword"
+        android:layout_width="293dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="484dp"
+        android:ems="10"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="Enter Your password"
+        android:inputType="textPersonName"
+        android:visibility="invisible"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.398"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UserNameHeading" />
 
@@ -92,10 +213,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="276dp"
+        android:layout_marginTop="356dp"
         android:background="@drawable/btn_bg"
-        android:text="Edit Details"
         android:fontFamily="@font/poppins_medium"
+        android:text="Edit Details"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
