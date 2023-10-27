@@ -57,25 +57,28 @@ class EditCompsActivity : AppCompatActivity() {
             val title = titleEditText.text.toString()
             val description = descriptionEditText.text.toString()
             val sellername = sellernameEditText.text.toString()
-            //val des = descriptionEditText.text.toString()
-            val category = categoryEditText.text.toString()
-            //val userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+            val category = categoryEditText.text.toString() // Get the category from the EditText
 
-            if (title.isEmpty() || description == null || sellername == null || category.isEmpty()) {
-                Toast.makeText(this, "Please fill in all the fields to update!", Toast.LENGTH_SHORT)
-                    .show()
+            // Check for empty fields
+            if (title.isEmpty() || description.isEmpty() || sellername.isEmpty() || category.isEmpty()) {
+                Toast.makeText(this, "Please fill in all the fields to update!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
+            // Create a map with the updated data
+            val updatedData = mapOf(
+                "title" to title,
+                "description" to description,
+                "sellername" to sellername,
+                "category" to category // Set the category explicitly
+            )
 
             db.collection("comps")
                 .document(compId)
-                .set(Comps(compId, title, description, sellername, category))
+                .update(updatedData) // Use update to preserve existing data and only update the specified fields
                 .addOnSuccessListener {
                     // Handle success
-                    //toast message
-                    Toast.makeText(this, "Complaint Updated successfully", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(this, "Complaint Updated successfully", Toast.LENGTH_SHORT).show()
                     finish()
                 }
                 .addOnFailureListener { exception ->
