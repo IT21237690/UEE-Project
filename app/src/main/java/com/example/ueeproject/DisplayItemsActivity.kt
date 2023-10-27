@@ -18,6 +18,7 @@ class DisplayItemsActivity : AppCompatActivity() {
     private lateinit var adapter: AuctionItemsAdapter
     private lateinit var itemsList: MutableList<AuctionItem>
     private lateinit var userMaleImageView: ImageView
+    private lateinit var home: ImageView
     private lateinit var itemsListener: ListenerRegistration
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,12 +26,19 @@ class DisplayItemsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_display_items)
         recyclerView = findViewById(R.id.recyclerView)
         userMaleImageView = findViewById(R.id.user_male)
+        home = findViewById(R.id.home)
 
         itemsList = mutableListOf()
 
         userMaleImageView.setOnClickListener {
             // Navigate to AddItemActivity when user_male ImageView is clicked
-            val intent = Intent(this@DisplayItemsActivity, AddToAuction::class.java)
+            val intent = Intent(this@DisplayItemsActivity, profileActivity::class.java)
+            startActivity(intent)
+        }
+
+        home.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@DisplayItemsActivity, HomeActivity::class.java)
             startActivity(intent)
         }
 

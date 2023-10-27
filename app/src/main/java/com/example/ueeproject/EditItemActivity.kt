@@ -29,10 +29,16 @@ class EditItemActivity : AppCompatActivity() {
     private lateinit var updatedEndTimeEditText: EditText
     private lateinit var imageView: ImageView
 
+    private lateinit var userMaleImageView: ImageView
+    private lateinit var home: ImageView
+
     @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_item)
+
+        userMaleImageView = findViewById(R.id.user_male)
+        home = findViewById(R.id.home)
 
         itemId = intent.getStringExtra("itemId") ?: ""
 
@@ -41,6 +47,18 @@ class EditItemActivity : AppCompatActivity() {
         updatedPriceEditText = findViewById(R.id.editPriceEditText)
 
         imageView = findViewById(R.id.imageView)
+
+        userMaleImageView.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@EditItemActivity, profileActivity::class.java)
+            startActivity(intent)
+        }
+
+        home.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@EditItemActivity, HomeActivity::class.java)
+            startActivity(intent)
+        }
 
         val chooseImageButton: ImageView = findViewById(R.id.imageView)
         chooseImageButton.setOnClickListener {

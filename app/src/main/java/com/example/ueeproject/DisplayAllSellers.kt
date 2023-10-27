@@ -1,24 +1,44 @@
 package com.example.ueeproject
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 
 class DisplayAllSellers : AppCompatActivity(), sellersadapter.OnItemClickListener {
+    private lateinit var userMaleImageView: ImageView
+    private lateinit var home: ImageView
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_sellers)
 
+        userMaleImageView = findViewById(R.id.user_male)
+        home = findViewById(R.id.home)
+
         // Initialize RecyclerView and its adapter
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        userMaleImageView.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@DisplayAllSellers, profileActivity::class.java)
+            startActivity(intent)
+        }
+
+        home.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@DisplayAllSellers, HomeActivity::class.java)
+            startActivity(intent)
+        }
 
         // Fetch data from Firestore
         val db = FirebaseFirestore.getInstance()

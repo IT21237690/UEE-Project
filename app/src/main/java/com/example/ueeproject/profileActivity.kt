@@ -36,6 +36,12 @@ class profileActivity : AppCompatActivity() {
             )
         }
 
+        binding.sellingItemlayout.setOnClickListener {
+            startActivity(
+                Intent(this, SellItemsDisplay::class.java)
+            )
+        }
+
         binding.auctionIconlayout.setOnClickListener {
             startActivity(
                 Intent(this, DisplayItemsActivity::class.java)

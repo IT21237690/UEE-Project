@@ -17,21 +17,34 @@ class SellItemsDisplay : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     private lateinit var adapter: SellItemAdapter
     private lateinit var itemsList: MutableList<AuctionItem>
-    private lateinit var userMaleImageView: ImageView
+
     private lateinit var itemsListener: ListenerRegistration
+
+    private lateinit var userMaleImageView: ImageView
+    private lateinit var home: ImageView
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sell_items_display)
         recyclerView = findViewById(R.id.recyclerView)
+
         userMaleImageView = findViewById(R.id.user_male)
+        home = findViewById(R.id.home)
+
 
         itemsList = mutableListOf()
 
         userMaleImageView.setOnClickListener {
             // Navigate to AddItemActivity when user_male ImageView is clicked
-            val intent = Intent(this@SellItemsDisplay, AddItems::class.java)
+            val intent = Intent(this@SellItemsDisplay, profileActivity::class.java)
+            startActivity(intent)
+        }
+
+        home.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@SellItemsDisplay, HomeActivity::class.java)
             startActivity(intent)
         }
 
