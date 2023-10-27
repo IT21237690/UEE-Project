@@ -3,8 +3,10 @@ package com.example.ueeproject
 //import org.junit.Assert.*
 
 //import com.google.common.truth.ExpectFailure.assertThat
-import com.google.common.truth.Truth.assertThat
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Test
+
 
 class AddItemsTest {
 
@@ -15,18 +17,21 @@ class AddItemsTest {
             description = "The product was used 4 years, the mother board is still in good condition",
             price = "Rs 200 000.00",
         )
-        assertThat(result).isTrue()
+        assertTrue(result)
+    }
+    @Test
+    fun `empty item name should return false`() {
+        // Arrange
+        val result = AddItems.Companion.validateInput(
+            itemName = "",
+            description = "The product was used 4 years, the motherboard is still in good condition",
+            price = "Rs 200 000.00"
+        )
+
+        // Act & Assert
+        assertFalse(result)
     }
 
-    @Test
-        fun `empty item name`() {
-            val result = AddItems.Companion.validateInput(
-                itemName = "",
-                description = "The product was used 4 years, the mother board is still in good condition",
-                price = "Rs 200 000.00",
-                )
-            assertThat(result).isFalse()
-        }
 
 
     @Test
@@ -36,7 +41,7 @@ class AddItemsTest {
             description = "",
             price = "Rs 200 000.00",
         )
-        assertThat(result).isFalse()
+        assertFalse(result)
     }
 
     @Test
@@ -46,7 +51,7 @@ class AddItemsTest {
             description = "The product was used 4 years, the mother board is still in good condition",
             price = "",
         )
-        assertThat(result).isFalse()
+        assertFalse(result)
     }
 
     @Test
@@ -56,7 +61,7 @@ class AddItemsTest {
             description = "The product",
             price = "Rs 5.00",
         )
-        assertThat(result).isFalse()
+        assertFalse(result)
     }
 
     @Test
@@ -66,7 +71,7 @@ class AddItemsTest {
             description = "The product",
             price = "Rs 5.00",
         )
-        assertThat(result).isFalse()
+        assertFalse(result)
     }
 
 
@@ -77,6 +82,6 @@ class AddItemsTest {
             description = "The product was used 4 years, the mother board is still in good condition",
             price = "Rs 5.00",
         )
-        assertThat(result).isFalse()
+        assertFalse(result)
     }
 }
