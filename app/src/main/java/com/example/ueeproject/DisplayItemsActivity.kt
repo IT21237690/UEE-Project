@@ -18,6 +18,7 @@ class DisplayItemsActivity : AppCompatActivity() {
     private lateinit var adapter: AuctionItemsAdapter
     private lateinit var itemsList: MutableList<AuctionItem>
     private lateinit var userMaleImageView: ImageView
+    private lateinit var home: ImageView
     private lateinit var itemsListener: ListenerRegistration
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,12 +26,19 @@ class DisplayItemsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_display_items)
         recyclerView = findViewById(R.id.recyclerView)
         userMaleImageView = findViewById(R.id.user_male)
+        home = findViewById(R.id.home)
 
         itemsList = mutableListOf()
 
         userMaleImageView.setOnClickListener {
             // Navigate to AddItemActivity when user_male ImageView is clicked
-            val intent = Intent(this@DisplayItemsActivity, AddToAuction::class.java)
+            val intent = Intent(this@DisplayItemsActivity, profileActivity::class.java)
+            startActivity(intent)
+        }
+
+        home.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@DisplayItemsActivity, HomeActivity::class.java)
             startActivity(intent)
         }
 
@@ -56,13 +64,26 @@ class DisplayItemsActivity : AppCompatActivity() {
 
         adapter = AuctionItemsAdapter(object : AuctionItemsAdapter.OnItemClickListener {
             override fun onEditClick(position: Int) {
+
                 val clickedItem = adapter.currentList[position]
                 val itemId = clickedItem.itemId // Assuming itemId is a property in your AuctionItem class
+                val startTime = clickedItem.startTime // Assuming startTime is a property in your AuctionItem class
 
-                // Start EditItemActivity and pass itemId as an extra
-                val intent = Intent(this@DisplayItemsActivity, EditItemActivity::class.java)
-                intent.putExtra("itemId", itemId)
-                startActivityForResult(intent, REQUEST_CODE_EDIT_ITEM)
+                // Get the current time in milliseconds
+                val currentTimeMillis = System.currentTimeMillis()
+
+                if (startTime > currentTimeMillis) {
+
+                    val intent = Intent(this@DisplayItemsActivity, EditItemActivity::class.java)
+                    intent.putExtra("itemId", itemId)
+                    startActivityForResult(intent, REQUEST_CODE_EDIT_ITEM)
+
+                } else {
+                    // Show a message indicating the item cannot be deleted because the starting time has passed
+                    showErrorPopup()
+                }
+
+
             }
 
             override fun onDeleteClick(position: Int) {
@@ -152,7 +173,7 @@ class DisplayItemsActivity : AppCompatActivity() {
     private fun showErrorPopup() {
         val successDialogBuilder = AlertDialog.Builder(this)
             .setTitle("Error!")
-            .setMessage("Item cannot be deleted as the auction has started or ended.")
+            .setMessage("The item cannot be deleted or edited as the auction has started or ended.")
             .setPositiveButton("OK") { dialog, _ ->
                 dialog.dismiss()
             }

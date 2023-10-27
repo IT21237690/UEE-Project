@@ -1,8 +1,6 @@
 package com.example.ueeproject
 
-import android.app.Activity
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -17,10 +15,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
 import java.util.UUID
 
 
@@ -38,6 +32,9 @@ class  AddItems : AppCompatActivity() {
     private val storageRef = FirebaseStorage.getInstance().reference
     private var imageUri: Uri? = null
 
+    private lateinit var userMaleImageView: ImageView
+    private lateinit var home: ImageView
+
 
 
     private val getContent =
@@ -49,12 +46,16 @@ class  AddItems : AppCompatActivity() {
             }
         }
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_additem)
 
         firebaseAuth = FirebaseAuth.getInstance()
         val uid = firebaseAuth.currentUser?.uid
+
+        userMaleImageView = findViewById(R.id.user_male)
+        home = findViewById(R.id.home)
 
 
         imageView = findViewById(R.id.imageView2)
@@ -63,6 +64,18 @@ class  AddItems : AppCompatActivity() {
         priceEditText = findViewById(R.id.addItemPrice)
         saveButton = findViewById(R.id.buttonAdd)
         val checkBoxIsChecked: CheckBox = findViewById(R.id.checkBoxIsChecked)
+
+        userMaleImageView.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@AddItems, profileActivity::class.java)
+            startActivity(intent)
+        }
+
+        home.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@AddItems, HomeActivity::class.java)
+            startActivity(intent)
+        }
 
         imageView.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)

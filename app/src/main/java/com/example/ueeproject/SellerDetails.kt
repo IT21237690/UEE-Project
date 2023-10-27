@@ -1,18 +1,14 @@
 package com.example.ueeproject
 
 import android.annotation.SuppressLint
-import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
-import android.widget.EditText
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import com.bumptech.glide.Glide
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 
 class SellerDetails : AppCompatActivity() {
@@ -24,7 +20,10 @@ class SellerDetails : AppCompatActivity() {
     private lateinit var addressTextView: TextView
     private lateinit var feedbackTextView: TextView
     private lateinit var ratingBar: RatingBar
+    private lateinit var userMaleImageView: ImageView
+    private lateinit var home: ImageView
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feedback)
@@ -38,6 +37,21 @@ class SellerDetails : AppCompatActivity() {
         addressTextView = findViewById(R.id.sellerAddress)
         feedbackTextView = findViewById(R.id.sellerRating)
         ratingBar = findViewById(R.id.ratingBar)
+
+        userMaleImageView = findViewById(R.id.user_male)
+        home = findViewById(R.id.home)
+
+        userMaleImageView.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@SellerDetails, profileActivity::class.java)
+            startActivity(intent)
+        }
+
+        home.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@SellerDetails, HomeActivity::class.java)
+            startActivity(intent)
+        }
 
         val feedbackButton = findViewById<Button>(R.id.feedbackSubmitButton)
         feedbackButton.setOnClickListener {

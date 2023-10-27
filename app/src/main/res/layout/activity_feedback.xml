@@ -17,10 +17,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.31"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.179" />
+        app:layout_constraintVertical_bias="0.175" />
 
     <Button
         android:id="@+id/feedbackSubmitButton"
@@ -38,7 +38,7 @@
         app:layout_constraintVertical_bias="0.976" />
 
     <ImageView
-        android:id="@+id/home4"
+        android:id="@+id/home"
         android:layout_width="78dp"
         android:layout_height="68dp"
 
@@ -51,7 +51,7 @@
         app:layout_constraintVertical_bias="0.057" />
 
     <ImageView
-        android:id="@+id/user_male4"
+        android:id="@+id/user_male"
         android:layout_width="85dp"
         android:layout_height="78dp"
         android:contentDescription="user_male"

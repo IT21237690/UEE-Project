@@ -6,12 +6,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ueeproject.databinding.ActivityHomeBinding
 import com.example.ueeproject.databinding.ActivityOngoingAuctionsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,10 +24,27 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
 
     private val db = FirebaseFirestore.getInstance()
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var userMaleImageView: ImageView
+    private lateinit var home: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ongoing_auctions)
+        userMaleImageView = findViewById(R.id.user_male)
+        home = findViewById(R.id.home)
+
+        userMaleImageView.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@OngoingAuctions, profileActivity::class.java)
+            startActivity(intent)
+        }
+
+        home.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@OngoingAuctions, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
 
 
 
@@ -40,6 +57,7 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
                 Intent(this, AddToAuction::class.java)
             )
         }
+
 
 
 

@@ -1,10 +1,10 @@
 package com.example.ueeproject
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.ueeproject.databinding.ActivityProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -35,6 +35,20 @@ class profileActivity : AppCompatActivity() {
                 Intent(this, UpdateUserDetailsActivity::class.java)
             )
         }
+
+        binding.sellingItemlayout.setOnClickListener {
+            startActivity(
+                Intent(this, SellItemsDisplay::class.java)
+            )
+        }
+
+        binding.auctionIconlayout.setOnClickListener {
+            startActivity(
+                Intent(this, DisplayItemsActivity::class.java)
+            )
+        }
+
+
         binding.homeSection.setOnClickListener {
             startActivity(
                 Intent(this, HomeActivity::class.java)
