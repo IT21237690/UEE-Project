@@ -1,8 +1,7 @@
 package com.example.ueeproject
 
-import com.google.common.truth.Truth
-import org.junit.Assert.*
-
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class EditSellItemTest {
@@ -14,7 +13,7 @@ class EditSellItemTest {
             description = "The product was used 4 years, the mother board is still in good condition",
             price = "Rs 200 000.00",
         )
-        Truth.assertThat(result).isTrue()
+        assertTrue(result)
     }
 
     @Test
@@ -24,7 +23,7 @@ class EditSellItemTest {
             description = "The product was used 4 years, the mother board is still in good condition",
             price = "Rs 200 000.00",
         )
-        Truth.assertThat(result).isFalse()
+        assertFalse(result)
     }
 
 
@@ -35,7 +34,7 @@ class EditSellItemTest {
             description = "",
             price = "Rs 200 000.00",
         )
-        Truth.assertThat(result).isFalse()
+        assertFalse(result)
     }
 
     @Test
@@ -45,7 +44,7 @@ class EditSellItemTest {
             description = "The product was used 4 years, the mother board is still in good condition",
             price = "",
         )
-        Truth.assertThat(result).isFalse()
+        assertFalse(result)
     }
 
     @Test
@@ -55,7 +54,7 @@ class EditSellItemTest {
             description = "The product",
             price = "Rs 5.00",
         )
-        Truth.assertThat(result).isFalse()
+        assertFalse(result)
     }
 
     @Test
@@ -65,7 +64,7 @@ class EditSellItemTest {
             description = "The product",
             price = "Rs 5.00",
         )
-        Truth.assertThat(result).isFalse()
+        assertFalse(result)
     }
 
 
@@ -76,6 +75,6 @@ class EditSellItemTest {
             description = "The product was used 4 years, the mother board is still in good condition",
             price = "Rs 5.00",
         )
-        Truth.assertThat(result).isFalse()
+        assertFalse(result)
     }
 }

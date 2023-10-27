@@ -1,9 +1,8 @@
 package com.example.ueeproject
 
-import com.google.common.truth.Truth
-import com.google.common.truth.Truth.assertThat
 //import org.junit.Assert.*
 
+import org.junit.Assert
 import org.junit.Test
 
 class AddToAuctionTest {
@@ -17,7 +16,7 @@ class AddToAuctionTest {
             startTime ="2023-10-04 09:15:00",
             endTime = "2023-10-06 09:15:00",
         )
-        assertThat(result).isTrue()
+        Assert.assertTrue(result)
     }
 
     @Test
@@ -29,7 +28,7 @@ class AddToAuctionTest {
             startTime ="2023-10-04 09:15:00",
             endTime = "2023-10-06 09:15:00",
         )
-        Truth.assertThat(result).isFalse()
+        Assert.assertFalse(result)
     }
 
 
@@ -42,7 +41,7 @@ class AddToAuctionTest {
             startTime ="2023-10-04 09:15:00",
             endTime = "2023-10-06 09:15:00",
         )
-        Truth.assertThat(result).isFalse()
+        Assert.assertFalse(result)
     }
 
     @Test
@@ -54,7 +53,7 @@ class AddToAuctionTest {
             startTime ="2023-10-04 09:15:00",
             endTime = "2023-10-06 09:15:00",
         )
-        Truth.assertThat(result).isFalse()
+        Assert.assertFalse(result)
     }
 
     @Test
@@ -66,7 +65,7 @@ class AddToAuctionTest {
             startTime = "",
             endTime = "2023-10-06 09:15:00",
         )
-        Truth.assertThat(result).isFalse()
+        Assert.assertFalse(result)
     }
 
     @Test
@@ -78,7 +77,7 @@ class AddToAuctionTest {
             startTime ="2023-10-04 09:15:00",
             endTime = "",
         )
-        Truth.assertThat(result).isFalse()
+        Assert.assertFalse(result)
     }
 
     fun `invalid item name`() {
@@ -89,7 +88,7 @@ class AddToAuctionTest {
             startTime ="2023-10-04 09:15:00",
             endTime = "2023-10-06 09:15:00",
         )
-        assertThat(result).isFalse()
+        Assert.assertFalse(result)
     }
 
 
@@ -103,7 +102,7 @@ class AddToAuctionTest {
             endTime = "2023-10-06 09:15:00",
 
             )
-        assertThat(result).isFalse()
+        Assert.assertFalse(result)
     }
 
 
@@ -116,7 +115,7 @@ class AddToAuctionTest {
             startTime ="2023-10-04 09:15:00",
             endTime = "2023-10-06 09:15:00",
         )
-        assertThat(result).isFalse()
+        Assert.assertFalse(result)
     }
 
 
@@ -130,7 +129,7 @@ class AddToAuctionTest {
             startTime ="2023-10-04 09:15:",
             endTime = "2023-10-06 09:15:",
         )
-        assertThat(result).isFalse()
+        Assert.assertFalse(result)
     }
 
     @Test
@@ -142,7 +141,7 @@ class AddToAuctionTest {
             startTime ="2023-10-0445 09:15:00",
             endTime = "2023-10-06354 09:15:00",
         )
-        assertThat(result).isFalse()
+        Assert.assertFalse(result)
     }
 
 
