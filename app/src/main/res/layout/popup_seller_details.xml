@@ -1,10 +1,12 @@
 <!-- popup_seller_details.xml -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:id="@+id/linearLayout3">
 
     <TextView
         android:id="@+id/nameTextView"
@@ -12,7 +14,11 @@
         android:layout_height="wrap_content"
         android:text="Seller Name: "
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:layout_conversion_absoluteHeight="24dp"
+        tools:layout_editor_absoluteY="16dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_conversion_absoluteWidth="107dp" />
 
     <TextView
         android:id="@+id/addressTextView"
@@ -20,7 +26,11 @@
         android:layout_height="wrap_content"
         android:text="Address: "
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:layout_conversion_absoluteHeight="24dp"
+        tools:layout_editor_absoluteY="40dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_conversion_absoluteWidth="76dp" />
 
     <TextView
         android:id="@+id/phoneNumberTextView"
@@ -28,6 +38,10 @@
         android:layout_height="wrap_content"
         android:text="Phone Number: "
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:layout_conversion_absoluteHeight="24dp"
+        tools:layout_editor_absoluteY="64dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_conversion_absoluteWidth="129dp" />
 
 </LinearLayout>
