@@ -35,6 +35,11 @@ class profileActivity : AppCompatActivity() {
                 Intent(this, UpdateUserDetailsActivity::class.java)
             )
         }
+        binding.homeSection.setOnClickListener {
+            startActivity(
+                Intent(this, HomeActivity::class.java)
+            )
+        }
 
         showName = findViewById(R.id.profileNameHeading)
         showEmail = findViewById(R.id.profileEmailHeading)
