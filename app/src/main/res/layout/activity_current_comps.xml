@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/add">
+    android:background="@drawable/newcomp">
 
     <ImageView
         android:id="@+id/user_male6"
@@ -37,7 +37,7 @@
         android:id="@+id/comp_list_view"
         android:layout_width="235dp"
         android:layout_height="260dp"
-        android:backgroundTint="#000000"
+        android:backgroundTint="#FFFFFF"
         android:divider="@null"
         android:dividerHeight="0dp"
         android:foregroundTint="#000000"
@@ -47,7 +47,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.38"
-        app:layout_constraintWidth_percent="0.9" >
+        app:layout_constraintWidth_percent="0.9">
 
 
     </ListView>
