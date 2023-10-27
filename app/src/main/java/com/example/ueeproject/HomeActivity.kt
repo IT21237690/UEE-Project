@@ -39,6 +39,18 @@ class HomeActivity : AppCompatActivity() {
             )
         }
 
+        binding.sellersiconlayout.setOnClickListener {
+            startActivity(
+                Intent(this, DisplayAllSellers::class.java)
+            )
+        }
+
+        binding.auctioniconlayout.setOnClickListener {
+            startActivity(
+                Intent(this, OngoingAuctions::class.java)
+            )
+        }
+
         firebaseAuth = FirebaseAuth.getInstance()
         val uid = firebaseAuth.currentUser?.uid
 

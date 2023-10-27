@@ -1,45 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- bidded_item_row.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/itemNameTextView"
+        android:id="@+id/itemTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Seller Name: "
+        android:text="Item ID"
         android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/descriptionTextView"
+        android:id="@+id/bidAmountTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email: "
+        android:text="Bid Amount"
         android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/priceTextView"
+        android:id="@+id/resultTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Phone Number: "
+        android:text="Result"
         android:textSize="16sp"
         android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/AddressTextVIew"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Address: "
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-
-
-
-
 
 </LinearLayout>

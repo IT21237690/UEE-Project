@@ -58,7 +58,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_item_to_auction"
-        app:layout_constraintVertical_bias="0.32" />
+        app:layout_constraintVertical_bias="0.37" />
 
     <EditText
         android:id="@+id/editDescriptionEditText"
@@ -72,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_item_to_auction"
-        app:layout_constraintVertical_bias="0.438" />
+        app:layout_constraintVertical_bias="0.543" />
 
     <EditText
         android:id="@+id/editPriceEditText"
@@ -86,23 +86,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_item_to_auction"
-        app:layout_constraintVertical_bias="0.555" />
+        app:layout_constraintVertical_bias="0.732" />
 
     <Button
         android:id="@+id/saveButton"
         android:layout_width="239dp"
         android:layout_height="49dp"
         android:backgroundTint="@color/button_yellow"
-        android:textColor="@color/button_text_black"
-        android:textStyle="bold"
         android:text="Save"
+        android:textColor="@color/button_text_black"
         android:textColorLink="#9C27B0"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.884" />
+        app:layout_constraintVertical_bias="0.941" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -111,10 +111,10 @@
         android:contentDescription="@string/todo"
         app:layout_constraintBottom_toTopOf="@+id/editItemNameEditText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_item_to_auction"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.395"
         app:srcCompat="@drawable/conectors_2" />
 
 

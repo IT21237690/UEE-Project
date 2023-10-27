@@ -87,13 +87,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.297"
-        app:srcCompat="@drawable/conectors_2" />
+        app:srcCompat="@drawable/add_image" />
 
     <TextView
         android:id="@+id/add_item"
         android:layout_width="324dp"
         android:layout_height="47dp"
-        android:text="Add Item"
+        android:text="Add Item to Sell"
         android:textAlignment="center"
         android:textColor="#020202"
         android:textSize="34sp"
@@ -111,6 +111,7 @@
         android:layout_height="wrap_content"
         android:text="Test this Product"
         android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

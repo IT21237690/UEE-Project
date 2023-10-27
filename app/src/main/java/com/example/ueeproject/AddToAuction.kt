@@ -12,7 +12,9 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.text.ParseException
@@ -36,6 +38,7 @@ class  AddToAuction : AppCompatActivity() {
     private val storageRef = FirebaseStorage.getInstance().reference
     private var imageUri: Uri? = null
     val calendar = Calendar.getInstance()
+    private lateinit var firebaseAuth: FirebaseAuth
 
 
 
@@ -60,6 +63,9 @@ class  AddToAuction : AppCompatActivity() {
         startTimeEditText = findViewById(R.id.editTextStartTime)
         endTimeEditText = findViewById(R.id.editTextEndTime)
         saveButton = findViewById(R.id.saveButton)
+
+        firebaseAuth = FirebaseAuth.getInstance()
+        val uid = firebaseAuth.currentUser?.uid
 
         imageView.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -115,20 +121,28 @@ class  AddToAuction : AppCompatActivity() {
                 val itemName = itemNameEditText.text.toString()
                 val description = descriptionEditText.text.toString()
                 val price = priceEditText.text.toString()
+                val userId = uid
 
                 // Check if start and end times are not blank
                 val startTimeText = startTimeEditText.text.toString()
                 val endTimeText = endTimeEditText.text.toString()
 
                 if (itemName.isNotBlank() && description.isNotBlank() && price.isNotBlank() && startTimeText.isNotBlank() && endTimeText.isNotBlank() && imageUri != null) {
+                    // Get current time as timestamp
+                    val currentTime = System.currentTimeMillis()
+
                     // Convert start and end times to timestamps (Long values)
                     val startTime = convertToTimestamp(startTimeText)
                     val endTime = convertToTimestamp(endTimeText)
 
-                    // Validate if the conversion was successful
-                    if (startTime != null && endTime != null) {
+                    // Validate if the conversion was successful and times are not before current time
+                    if (startTime != null && endTime != null && startTime >= currentTime && endTime >= currentTime) {
                         // Call your uploadImageToStorage function with startTime and endTime as Long values
-                        uploadImageToStorage(itemName, description, price, startTime, endTime)
+                        if (userId != null) {
+                            uploadImageToStorage(itemName, description, price, startTime, endTime,userId)
+                        }
+
+                        showSuccessPopup()
 
                         // Start DisplayItemsActivity after uploading data
                         val intent = Intent()
@@ -136,7 +150,7 @@ class  AddToAuction : AppCompatActivity() {
                         setResult(Activity.RESULT_OK, intent)
                         finish()
                     } else {
-                        showToast("Invalid date/time format. Please use a valid format.")
+                        showErrorPopup()
                     }
                 } else {
                     showToast("Please fill out all fields and select an image.")
@@ -147,6 +161,29 @@ class  AddToAuction : AppCompatActivity() {
             }
         }
 
+
+    }
+
+    private fun showErrorPopup() {
+        val successDialogBuilder = AlertDialog.Builder(this)
+            .setTitle("Error!")
+            .setMessage("Please add Future time")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+        val successDialog = successDialogBuilder.create()
+        successDialog.show()
+    }
+
+    private fun showSuccessPopup() {
+        val successDialogBuilder = AlertDialog.Builder(this)
+            .setTitle("Success!")
+            .setMessage("Added Successfully.")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+        val successDialog = successDialogBuilder.create()
+        successDialog.show()
     }
 
     private fun convertToTimestamp(dateTimeString: String): Long? {
@@ -202,6 +239,7 @@ class  AddToAuction : AppCompatActivity() {
         price: String,
         startTime: Long,
         endTime: Long,
+        userId:String,
     ) {
         val imageFileName = "${UUID.randomUUID()}.jpg"
         val itemId = UUID.randomUUID().toString() // Generate a unique ID
@@ -217,7 +255,8 @@ class  AddToAuction : AppCompatActivity() {
                         price,
                         startTime,
                         endTime,
-                        imageUrl
+                        imageUrl,
+                        userId
                     )
                 }
             }
@@ -234,7 +273,8 @@ class  AddToAuction : AppCompatActivity() {
         price: String,
         startTime: Long,
         endTime: Long,
-        imageUrl: String
+        imageUrl: String,
+        userId :String
     ) {
         // Generate a unique itemId
         val itemId = UUID.randomUUID().toString()
@@ -246,7 +286,8 @@ class  AddToAuction : AppCompatActivity() {
             "price" to price,
             "startTime" to startTime,
             "endTime" to endTime,
-            "imageUrl" to imageUrl
+            "imageUrl" to imageUrl,
+            "userId" to userId
         )
 
         // Use the generated itemId as the document ID

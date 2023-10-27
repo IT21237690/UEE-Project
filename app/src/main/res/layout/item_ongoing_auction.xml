@@ -20,6 +20,7 @@
         android:layout_marginStart="16dp"
         android:layout_toRightOf="@id/itemImageView"
         android:text="Item Name: "
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView
@@ -29,7 +30,9 @@
         android:layout_below="@id/itemNameTextView"
         android:layout_marginStart="16dp"
         android:layout_toRightOf="@id/itemImageView"
-        android:text="Description: " />
+        android:text="Description: "
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/priceTextView"
@@ -38,7 +41,9 @@
         android:layout_below="@id/descriptionTextView"
         android:layout_marginStart="16dp"
         android:layout_toRightOf="@id/itemImageView"
-        android:text="Price: " />
+        android:text="Price: "
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/startTimeTextView"
@@ -47,7 +52,9 @@
         android:layout_below="@id/priceTextView"
         android:layout_marginStart="16dp"
         android:layout_toRightOf="@id/itemImageView"
-        android:text="Start Time: " />
+        android:text="Start Time: "
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/endTimeTextView"
@@ -56,5 +63,9 @@
         android:layout_below="@id/startTimeTextView"
         android:layout_marginStart="16dp"
         android:layout_toRightOf="@id/itemImageView"
-        android:text="End Time: " />
+        android:text="End Time: "
+        android:textSize="16sp"
+        android:textStyle="bold" />
 </RelativeLayout>
+
+

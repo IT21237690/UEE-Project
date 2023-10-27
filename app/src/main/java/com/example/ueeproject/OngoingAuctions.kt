@@ -1,23 +1,47 @@
 package com.example.ueeproject
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ueeproject.databinding.ActivityHomeBinding
+import com.example.ueeproject.databinding.ActivityOngoingAuctionsBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickListener {
+
+    private lateinit var binding: ActivityOngoingAuctionsBinding
     private lateinit var recyclerView: RecyclerView
+
     private val db = FirebaseFirestore.getInstance()
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ongoing_auctions)
+
+
+
+        binding = ActivityOngoingAuctionsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+
+        binding.AddButton.setOnClickListener {
+            startActivity(
+                Intent(this, AddToAuction::class.java)
+            )
+        }
+
+
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -50,9 +74,41 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
 
     override fun onItemClick(item: AuctionItem) {
         val itemId = item.itemId
+        firebaseAuth = FirebaseAuth.getInstance()
+        val uid = firebaseAuth.currentUser?.uid
+
+        // Reference to Firestore database
+        val db = FirebaseFirestore.getInstance()
+
+        // Query to get the highest bid for the current item
+        db.collection("Bids")
+            .whereEqualTo("itemId", itemId)
+            .orderBy("bidAmount", Query.Direction.DESCENDING)
+            .limit(1)
+            .get()
+            .addOnSuccessListener { documents ->
+                if (!documents.isEmpty) {
+                    val highestBidAmount = documents.documents[0].get("bidAmount") as Double
+                    showBidInputDialog(itemId, uid, highestBidAmount)
+                } else {
+                    // If no bids exist for the item, show the bid input dialog with bidAmount as 0.0
+                    showBidInputDialog(itemId, uid, 0.0)
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.w("Firestore", "Error getting highest bid", e)
+                // Handle error, e.g., show an error message to the user
+            }
+    }
+
+    private fun showBidInputDialog(itemId: String, uid: String?, highestBidAmount: Double) {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_bid_amount, null)
+        val textViewCurrentBid: TextView = dialogView.findViewById(R.id.textViewCurrentBid)
         val editTextBidAmount: EditText = dialogView.findViewById(R.id.editTextBidAmount)
         val buttonSubmitBid: Button = dialogView.findViewById(R.id.buttonSubmitBid)
+
+        // Display the current highest bid
+        textViewCurrentBid.text = "Current Highest Bid: $highestBidAmount"
 
         val dialogBuilder = AlertDialog.Builder(this)
             .setView(dialogView)
@@ -65,13 +121,14 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
         buttonSubmitBid.setOnClickListener {
             val bidAmount = editTextBidAmount.text.toString()
             if (bidAmount.isNotEmpty()) {
-                val bidAmountValue = bidAmount.toDouble() // Convert bid amount to a numerical value if needed
+                val bidAmountValue = bidAmount.toDouble()
 
-                // Save bid amount and item ID to a separate collection in Firestore
-                val db = FirebaseFirestore.getInstance()
+                // Save bid amount and item ID to the Bids collection in Firestore
                 val bidData = hashMapOf(
                     "itemId" to itemId,
-                    "bidAmount" to bidAmountValue
+                    "UserId" to uid,
+                    "bidAmount" to bidAmountValue,
+                    "isWinner" to ""
                 )
 
                 db.collection("Bids")
@@ -90,12 +147,11 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
                         dialog.dismiss()
                     }
             } else {
-                // Handle empty bid amount (show a message, error, etc.)
-                // You might want to display an error message to the user
                 editTextBidAmount.error = "Bid amount cannot be empty"
             }
         }
     }
+
 
     private fun showSuccessPopup() {
         val successDialogBuilder = AlertDialog.Builder(this)

@@ -13,6 +13,10 @@
         <item name="android:textSize">@dimen/h4TextSize</item>
     </style>
 
+    <style name="Theme.Comps" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize theme attributes here -->
+    </style>
+
     <dimen name="h3TextSize">22sp</dimen>
     <dimen name="h4TextSize">35sp</dimen>
 
