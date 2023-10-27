@@ -3,9 +3,9 @@ package com.example.ueeproject
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -17,6 +17,7 @@ class ItemDetailsActivity : AppCompatActivity() {
     private lateinit var itemImageView: ImageView
     private lateinit var sellerNameTextView: TextView
     private lateinit var sellerEmailTextView: TextView
+    private lateinit var sellerphoneTextView: TextView
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +33,7 @@ class ItemDetailsActivity : AppCompatActivity() {
         itemImageView = findViewById(R.id.itemImageView)
         sellerNameTextView = findViewById(R.id.sellerNameTextView)
         sellerEmailTextView = findViewById(R.id.sellerEmailTextView)
+        sellerphoneTextView = findViewById(R.id.sellerphoneTextView)
 
         // Sample code (assuming you have a Firestore collection named "AddItems")
         val db = FirebaseFirestore.getInstance()
@@ -67,10 +69,12 @@ class ItemDetailsActivity : AppCompatActivity() {
                                 // Seller document exists, fetch seller details and update UI
                                 val sellerName = sellerDocument.getString("name")
                                 val sellerEmail = sellerDocument.getString("email")
+                                val sellerPhone = sellerDocument.getString("phone")
 
                                 // Update UI with fetched seller details
                                 sellerNameTextView.text = "Seller Name: $sellerName"
                                 sellerEmailTextView.text = "Seller Email: $sellerEmail"
+                                sellerphoneTextView.text = "Contact Number: $sellerPhone"
                             } else {
                                 // Seller document does not exist, handle error or show a message
                                 sellerNameTextView.text = "Seller Name: Not Available"
