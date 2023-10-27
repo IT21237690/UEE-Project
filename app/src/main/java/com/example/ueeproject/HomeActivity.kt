@@ -51,6 +51,12 @@ class HomeActivity : AppCompatActivity() {
             )
         }
 
+        binding.complainViewCard.setOnClickListener {
+            startActivity(
+                Intent(this, CurrentCompsActivity::class.java)
+            )
+        }
+
         firebaseAuth = FirebaseAuth.getInstance()
         val uid = firebaseAuth.currentUser?.uid
 
