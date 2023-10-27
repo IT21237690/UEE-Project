@@ -204,6 +204,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/complainViewCard"
                         android:layout_width="100dp"
                         android:layout_height="120dp"
                         android:layout_margin="10dp"
