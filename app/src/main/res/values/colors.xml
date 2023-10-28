@@ -12,6 +12,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="sharp_red">#c83034</color>
+    <color name="input_blue">#0583F2</color>
 
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>

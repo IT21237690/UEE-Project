@@ -55,6 +55,12 @@ class profileActivity : AppCompatActivity() {
             )
         }
 
+        binding.privacyLayout.setOnClickListener {
+            startActivity(
+                Intent(this, PrivacyActivity::class.java)
+            )
+        }
+
 
         binding.homeSection.setOnClickListener {
             startActivity(
