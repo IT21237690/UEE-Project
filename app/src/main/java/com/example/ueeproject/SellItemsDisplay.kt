@@ -8,10 +8,14 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ueeproject.databinding.ActivityOngoingAuctionsBinding
+import com.example.ueeproject.databinding.ActivitySellItemsDisplayBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 
 class SellItemsDisplay : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySellItemsDisplayBinding
 
     private lateinit var recyclerView: RecyclerView
     private val db = FirebaseFirestore.getInstance()
@@ -46,6 +50,15 @@ class SellItemsDisplay : AppCompatActivity() {
             // Navigate to AddItemActivity when user_male ImageView is clicked
             val intent = Intent(this@SellItemsDisplay, HomeActivity::class.java)
             startActivity(intent)
+        }
+
+        binding = ActivitySellItemsDisplayBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.Additem.setOnClickListener {
+            startActivity(
+                Intent(this, AddItems::class.java)
+            )
         }
 
         itemsListener = db.collection("Sell Items")
