@@ -14,5 +14,6 @@
     <string name="Edit_Item_Details" />
 
     <string name="loginHeading">Login</string>
+    <string name="imageurl">imageUrl</string>
 
 </resources>

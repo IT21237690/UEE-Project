@@ -48,6 +48,13 @@ class profileActivity : AppCompatActivity() {
             )
         }
 
+        binding.logOutLayout.setOnClickListener {
+            firebaseAuth.signOut()
+            startActivity(
+                Intent(this, SignInActivity::class.java)
+            )
+        }
+
 
         binding.homeSection.setOnClickListener {
             startActivity(

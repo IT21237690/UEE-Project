@@ -27,23 +27,13 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
     private lateinit var userMaleImageView: ImageView
     private lateinit var home: ImageView
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ongoing_auctions)
         userMaleImageView = findViewById(R.id.user_male)
         home = findViewById(R.id.home)
 
-        userMaleImageView.setOnClickListener {
-            // Navigate to AddItemActivity when user_male ImageView is clicked
-            val intent = Intent(this@OngoingAuctions, profileActivity::class.java)
-            startActivity(intent)
-        }
-
-        home.setOnClickListener {
-            // Navigate to AddItemActivity when user_male ImageView is clicked
-            val intent = Intent(this@OngoingAuctions, HomeActivity::class.java)
-            startActivity(intent)
-        }
 
 
 
@@ -58,11 +48,30 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
             )
         }
 
+        binding.bidsButton.setOnClickListener {
+            startActivity(
+                Intent(this, BiddedItemsActivity::class.java)
+            )
+        }
+
 
 
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        userMaleImageView.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@OngoingAuctions, profileActivity::class.java)
+            startActivity(intent)
+        }
+
+        home.setOnClickListener {
+            // Navigate to AddItemActivity when user_male ImageView is clicked
+            val intent = Intent(this@OngoingAuctions, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
 
         // Query Firestore to get ongoing items
         val currentTime = System.currentTimeMillis()
@@ -144,9 +153,11 @@ class OngoingAuctions : AppCompatActivity(), OngoingAuctionsAdapter.OnItemClickL
                 // Save bid amount and item ID to the Bids collection in Firestore
                 val bidData = hashMapOf(
                     "itemId" to itemId,
+                    "itemName" to itemId,
                     "UserId" to uid,
                     "bidAmount" to bidAmountValue,
                     "isWinner" to ""
+
                 )
 
                 db.collection("Bids")
