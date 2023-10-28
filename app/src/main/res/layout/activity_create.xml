@@ -26,7 +26,7 @@
         app:layout_constraintHorizontal_bias="0.122"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.453" />
+        app:layout_constraintVertical_bias="0.435" />
 
     <EditText
         android:id="@+id/sellername_edit_text"
@@ -36,14 +36,13 @@
         android:background="@drawable/rounded_edittext_background"
         android:drawablePadding="10dp"
         android:hint="Description"
-        android:inputType="numberDecimal"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.122"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.549" />
+        app:layout_constraintVertical_bias="0.53" />
 
     <EditText
         android:id="@+id/category_edit_text"
@@ -67,6 +66,7 @@
         android:layout_height="54dp"
         android:layout_marginBottom="80dp"
 
+        android:background="@drawable/rounded_edittext_background"
         android:drawablePadding="10dp"
         android:hint="Seller name"
         android:padding="16dp"
@@ -75,8 +75,7 @@
         app:layout_constraintHorizontal_bias="0.122"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.713"
-        android:background="@drawable/rounded_edittext_background"/>
+        app:layout_constraintVertical_bias="0.713" />
 
     <Button
         android:id="@+id/create_button"
